@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>A Vida é Boa e Sempre Vai Dar Certo!</h1>
+	<h1>A Vida é Muito Boa e Sempre Vai Dar Certo!</h1>
 
 	<form method="post" action="LoginServlet">
 		<input type="text" name="Nome" /> <input type="text" name="Login" />
