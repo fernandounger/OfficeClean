@@ -12,12 +12,16 @@ CREATE TABLE IF NOT EXISTS Usuario (
   Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   Nome VARCHAR(100) NOT NULL,
   Login VARCHAR(45) NOT NULL,
-  Senha VARCHAR(45) NOT NULL
-  /*NivelAcesso VARCHAR(45) NULL*/
+  Senha VARCHAR(45) NOT NULL,
+  NivelAcesso VARCHAR(45) NULL
 );
 SELECT * FROM Usuario;
 INSERT INTO Usuario (Nome, Login, Senha)
-VALUES ("admin", "admin123", "123");
+VALUES ('Administrador', 'admin', '123');
+INSERT INTO Usuario (Nome, Login, Senha)
+VALUES ('Isaque', 'zaque', '123');
+
+
 
 -- -----------------------------------------------------
 -- Table Endereco
