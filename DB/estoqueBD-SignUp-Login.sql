@@ -19,7 +19,7 @@ SELECT * FROM Usuario;
 INSERT INTO Usuario (Nome, Login, Senha)
 VALUES ('Administrador', 'admin', '123');
 INSERT INTO Usuario (Nome, Login, Senha)
-VALUES ('Isaque', 'zaque', '123');
+VALUES ('Isaque', 'zaque@email.com', '123');
 
 
 
