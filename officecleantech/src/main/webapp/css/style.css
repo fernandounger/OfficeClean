@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none!important;
+    border: none;
+}
+
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+/* Modal de Produto */
+.form-group input , .form-group select{
+    border: none;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2)!important;
+}
+
+#content .navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+/*
+    BARRA DE PESQUISA
+*/
+.search-container form{
+    display: flex;
+    align-items: center;
+
+}
+.search-container form input[type=text] {
+    padding: 6px;
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    outline: #1e65b2;
+    font-weight: 600;
+    box-shadow: 1px 1px 9px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.search-container form button {
+    padding: 6px 10px;
+    background: #2678D1;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.search-container form button:hover {
+    background: #1e65b2;
+}
+/*TABELA*/
+thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 370px;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 15px;
+    font-size: 1.1em;
+    display: block;
+    font-weight: 600;
+}
+
+#sidebar ul li:hover {
+    background: #2678D1;
+    color: #fff;
+}
+
+#sidebar ul li a:hover {
+    color: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #2678D1;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+.icons-menu {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.icons-menu i{
+    font-size: 1.2rem;
+}
+.icons-menu a {
+    font-weight: 700 !important;
+    color: #323232eb;
+}
+
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+    #content.active {
+        width: calc(100% - 250px);
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+
+    .columnInput {
+        flex-direction: column !important;
+        gap: 0.3rem !important;
+    }
+}
+@media (max-width: 510px){
+    #header__btn{
+        flex-direction: column;
+        align-items: none;
+    }
+    #header__btn #btnProduto{
+        padding: 15px;
+        width: 100%;
+    }
+    .search-container{
+        width: 100%;
+    }
+    .search-container form{
+        justify-content: space-between;
+    }
+    .search-container form input{
+        width: 100%;
+    }
+}
