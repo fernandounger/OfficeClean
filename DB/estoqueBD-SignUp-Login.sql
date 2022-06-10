@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS Endereco (
 SELECT * FROM Endereco;
 insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
 values ('lorem', 0, 'lorem','lorem','lorem','RJ','lorem');
-
+insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
+values ('loremlorem', 1, 'loremlorem','loremlorem','loremlorem','SP','loremlorem');
 -- -----------------------------------------------------
 -- Table Fornecedor
 -- -----------------------------------------------------
@@ -58,12 +59,15 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 SELECT * FROM Fornecedor;
-
+insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
+values ('lorem', 'lorem', 'lorem', 'lorem', 'lorem', 1);
+insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
+values ('loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 2);
 -- -----------------------------------------------------
 -- Table Produto
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Produto (
-    CodigoBarra INT PRIMARY KEY NOT NULL,
+    CodigoBarra INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Nome VARCHAR(100) NOT NULL,
     Categoria VARCHAR(45) NOT NULL,
 		CHECK (Categoria IN ('Equipamentos de Limpeza' , 'Acessórios de Limpeza', 'Produtos Químicos de Limpeza', 'Papéis')),
@@ -76,6 +80,13 @@ CREATE TABLE IF NOT EXISTS Produto (
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 SELECT * FROM Produto;
+insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
+values('lorem', 'Papéis', 1,'lorem', 'lorem', 'lorem');
+insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
+values('loremlorem', 'Equipamentos de Limpeza', 2,'loremlorem', 'loremlorem', 'loremlorem');
+insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
+values('ar', 'Equipamentos de Limpeza', 2,'loremlorem', 'loremlorem', 'loremlorem');
+
 
 create or replace view listagemProduto as 
 select 
@@ -85,6 +96,8 @@ from Produto p
 inner join Fornecedor f
 on p.Fornecedor_Id = f.Id;
 select * from listagemProduto;
+
+select * from listagemProduto order by Nome;
 
 -- -----------------------------------------------------
 -- Table Estoque
