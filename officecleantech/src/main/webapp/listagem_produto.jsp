@@ -211,7 +211,7 @@
 
 					</thead>
 					<tbody>
-<!-- 						<tr>
+						<!-- 						<tr>
 							<th scope="row">151412</th>
 							<td>Cell</td>
 							<td>Cell</td>
@@ -240,7 +240,7 @@
 
 
 						<tr>
-							<th scope="row">679432</th>
+							<!-- <th scope="row">679432</th> -->
 							<td><%=p.getCodigoBarra()%></td>
 							<td><%=p.getNome()%></td>
 							<td><%=p.getCategoria()%></td>
