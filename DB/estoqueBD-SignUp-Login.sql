@@ -29,7 +29,7 @@ VALUES ('Isaque', 'zaque@email.com', '123');
 CREATE TABLE IF NOT EXISTS Endereco (
     Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     Logradouro VARCHAR(100) NOT NULL,
-    Número INT NOT NULL,
+    Numero INT NOT NULL,
     Complemento VARCHAR(45) NULL,
     Bairro VARCHAR(45) NOT NULL,
     Cidade VARCHAR(45) NOT NULL,
@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS Endereco (
 );
 
 SELECT * FROM Endereco;
+insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
+values ('lorem', 0, 'lorem','lorem','lorem','RJ','lorem');
 
 -- -----------------------------------------------------
 -- Table Fornecedor
@@ -55,7 +57,6 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
         REFERENCES Endereco (Id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
 SELECT * FROM Fornecedor;
 
 -- -----------------------------------------------------
@@ -74,8 +75,16 @@ CREATE TABLE IF NOT EXISTS Produto (
         REFERENCES Fornecedor (Id)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 );
-
 SELECT * FROM Produto;
+
+create or replace view listagemProduto as 
+select 
+p.CodigoBarra, p.Nome, p.Categoria,
+f.Nome as Fornecedor
+from Produto p
+inner join Fornecedor f
+on p.Fornecedor_Id = f.Id;
+select * from listagemProduto;
 
 -- -----------------------------------------------------
 -- Table Estoque
