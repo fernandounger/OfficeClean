@@ -17,7 +17,7 @@ class ProdutoDaoTest {
 	void testListagem() {
 		ProdutoDao dao = new ProdutoDao();
 		ArrayList<Produto> lista = dao.listar("");
-		
+
 //		assertTrue(lista.size()>0);
 		assertEquals(lista.size(), 1);
 	}

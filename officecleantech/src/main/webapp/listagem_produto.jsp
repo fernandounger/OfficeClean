@@ -39,6 +39,14 @@
 </head>
 
 <body>
+	<%
+	String nomeBusca = request.getParameter("busca");
+
+	if (nomeBusca == null) {
+		nomeBusca = "";
+	}
+	System.out.println(nomeBusca);
+	%>
 	<div class="wrapper">
 		<!-- Sidebar  -->
 		<nav id="sidebar">
@@ -116,14 +124,21 @@
 					style="background-color: #2678D1;" id="btnProduto">Adicionar
 					Produto</button>
 				<div class="search-container">
-					<form action="" method="post">
-						<input type="text" placeholder="Buscar produto" name="search">
-						<button type="submit">
+					<form action="listagem_produto.jsp" method="post">
+
+						<!-- Área de Busca -->
+						<input type="text" placeholder="Buscar produto" name="busca"
+							value="<%=nomeBusca%>">
+						<button type="submit" value="Buscar">
+
 							<i class="fa fa-search"></i>
 						</button>
 					</form>
 				</div>
 			</header>
+
+
+
 			<!-- Modal de Produto -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -232,7 +247,7 @@
 
 						<%
 						ProdutoDao dao = new ProdutoDao();
-						ArrayList<Produto> produtos = dao.listar("");
+						ArrayList<Produto> produtos = dao.listar(nomeBusca);
 
 						for (Produto p : produtos) {
 						%>
