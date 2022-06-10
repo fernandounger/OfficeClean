@@ -41,21 +41,22 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("Nome");
+//		String name = request.getParameter("Nome");
 		String login = request.getParameter("Login");
 		String password = request.getParameter("Senha");
 
-		System.out.println(name+" - "+login + " - " + password);
+		System.out.println(/* name+ " - "+*/login + " - " + password);
 
 		UsuarioController uc = new UsuarioController();
-		Usuario u = uc.logarUsuario(name, login, password);
+		Usuario u = uc.logarUsuario(/*name,*/ login, password);
 
 		String destino = "";
 		if (u != null) {
 			HttpSession sessao = request.getSession();
 
 			sessao.setAttribute("usuarioLogado", u);
-			destino = "area_restrita.jsp";
+//			destino = "area_restrita.jsp";
+			destino = "listagem_produto.jsp";
 		} else {
 			request.setAttribute("Error", "Acesso Negado");
 			destino = "login.jsp";

@@ -28,13 +28,13 @@ public class UsuarioDao extends Conexao {
 		}
 	}
 
-	public Usuario logar(String name, String login, String password) {
+	public Usuario logar(/*String name,*/ String login, String password) {
 		Usuario u = null;
 
 		try {
 			String sql = "SELECT * FROM Usuario WHERE Login = ? AND Senha = ?";
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setString(1, name);
+			/*ps.setString(1, name);*/
 			ps.setString(1, login);
 			ps.setString(2, password);
 

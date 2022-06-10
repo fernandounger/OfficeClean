@@ -1,5 +1,6 @@
 <%@ page import="br.com.officecleantech.model.entidade.Produto"%>
 <%@ page import="br.com.officecleantech.model.dao.ProdutoDao"%>
+<%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -39,6 +40,17 @@
 </head>
 
 <body>
+	<!-- tratamento login -->
+	<%
+	if (session.getAttribute("usuarioLogado") == null) {
+		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+		rd.forward(request, response);
+	}
+	Usuario u = (Usuario) session.getAttribute("usuarioLogado");
+	%>
+	<!-- fim tratamento login-->
+
+	<!-- tratamento busca -->
 	<%
 	String nomeBusca = request.getParameter("busca");
 
@@ -47,6 +59,8 @@
 	}
 	System.out.println(nomeBusca);
 	%>
+	<!-- fim tratamento busca -->
+
 	<div class="wrapper">
 		<!-- Sidebar  -->
 		<nav id="sidebar">

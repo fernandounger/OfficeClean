@@ -12,9 +12,9 @@ public class UsuarioController {
 
 	}
 
-	public Usuario logarUsuario(String name, String login, String password) {
+	public Usuario logarUsuario(/*String name,*/ String login, String password) {
 
-		return dao.logar(name, login, password);
+		return dao.logar(/*name,*/ login, password);
 	}
 
 }
