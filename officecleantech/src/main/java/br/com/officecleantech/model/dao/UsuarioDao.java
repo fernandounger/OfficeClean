@@ -8,33 +8,36 @@ import br.com.officecleantech.model.entidade.Usuario;
 
 public class UsuarioDao extends Conexao {
 
-	public void cadastrar(Usuario u) {
-
-		String sql = "INSERT INTO Usuario (Nome, Login, Senha) VALUES ( ?, ?, ?)";
+	public String cadastrar(Usuario u) {
+		String mensagem = "";
 
 		try {
+			String sql = "INSERT INTO Usuario (Nome, Login, Senha) VALUES ( ?, ?, ?)";
+
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setString(1, u.getNome());
 			ps.setString(2, u.getLogin());
 			ps.setString(3, u.getSenha());
-			/*ps.setString(4, u.getNivelAcesso());*/
+			/* ps.setString(4, u.getNivelAcesso()); */
 			ps.execute();
-
+			mensagem = "sucesso no cadastro";
 		} catch (SQLException e) {
-			System.out.println("Erro no Cadastro");
+			mensagem = "falha no cadastro";
 			e.printStackTrace();
 		} finally {
+			System.out.println(mensagem);
 			fecharConexao();
 		}
+		return mensagem;
 	}
 
-	public Usuario logar(/*String name,*/ String login, String password) {
+	public Usuario logar(/* String name, */ String login, String password) {
 		Usuario u = null;
 
 		try {
 			String sql = "SELECT * FROM Usuario WHERE Login = ? AND Senha = ?";
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			/*ps.setString(1, name);*/
+			/* ps.setString(1, name); */
 			ps.setString(1, login);
 			ps.setString(2, password);
 

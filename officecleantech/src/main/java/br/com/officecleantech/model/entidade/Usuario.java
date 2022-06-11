@@ -7,6 +7,12 @@ public class Usuario {
 	private String Senha;
 	private String NivelAcesso;
 
+	public Usuario() {
+		this.Nome = "";
+		this.Login = "";
+		this.Senha = "";
+	}
+	
 	public long getId() {
 		return Id;
 	}
