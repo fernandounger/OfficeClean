@@ -63,6 +63,20 @@ insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('lorem', 'lorem', 'lorem', 'lorem', 'lorem', 1);
 insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 2);
+
+create or replace view listagemFornecedor as 
+select 
+f.Id, f.Nome, f.Telefone, f.Email,
+en.Estado, en.Cidade, en.CEP, en.Bairro, en.Logradouro, en.Numero, en.Complemento
+from Fornecedor f
+inner join Endereco en
+on f.Endereco_Id = en.Id;
+select * from listagemFornecedor;
+
+select * from listagemFornecedor order by Id;
+
+
+
 -- -----------------------------------------------------
 -- Table Produto
 -- -----------------------------------------------------
