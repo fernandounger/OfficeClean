@@ -7,7 +7,7 @@ public class Endereco {
 	private String complemento;
 	private String bairro;
 	private String cidade;
-	private char estado;
+	private String estado;
 
 	public long getId() {
 		return id;
@@ -57,11 +57,11 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
-	public char getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(char estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

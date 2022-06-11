@@ -31,6 +31,7 @@ public class ProdutoDao extends Conexao {
 				f.setNome(rs.getString("Fornecedor"));
 				p.setFornecedor(f);
 				lista.add(p);
+				
 			}
 			System.out.println("Sucesso na Listagem");
 
