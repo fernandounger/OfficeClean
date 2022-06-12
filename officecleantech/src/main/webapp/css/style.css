@@ -171,7 +171,12 @@ a[data-toggle="collapse"] {
     font-weight: 700 !important;
     color: #323232eb;
 }
-
+#sidebar ul #li-logoff i , #sidebar ul #li-logoff a {
+    color: rgb(180, 39, 39);
+}
+#sidebar ul #li-logoff:hover{
+    background-color: transparent;
+}
 
 #content {
     width: calc(100% - 250px);
