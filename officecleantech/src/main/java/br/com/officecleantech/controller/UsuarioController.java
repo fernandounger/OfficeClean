@@ -7,8 +7,9 @@ public class UsuarioController {
 
 	UsuarioDao dao = new UsuarioDao();
 
-	public void cadastrarUsuario(Usuario u) {
-		 dao.cadastrar(u);
+	public String cadastrarUsuario(Usuario u) {
+		
+		 return dao.cadastrar(u);
 
 	}
 
@@ -16,5 +17,7 @@ public class UsuarioController {
 
 		return dao.logar(/*name,*/ login, password);
 	}
+	
+	
 
 }

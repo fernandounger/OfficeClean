@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="br.com.officecleantech.model.entidade.Produto"%>
 <%@ page import="br.com.officecleantech.model.dao.ProdutoDao"%>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
@@ -6,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +40,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 </head>
-
+<meta charset="UTF-8">
 <body>
 	<!-- tratamento login -->
 	<%
@@ -113,10 +115,9 @@
 				</li>
 				<li id="li-logoff">
 					<div class="icons-menu logoff">
-					  <i class="fa-solid fa-power-off"></i>
-					  <a href="#">Sair</a>
+						<i class="fa-solid fa-power-off"></i> <a href="LogoffServlet">Sair</a>
 					</div>
-				  </li>
+				</li>
 			</ul>
 
 		</nav>
@@ -146,7 +147,7 @@
 				<div class="search-container">
 					<form action="listagem_produto.jsp" method="post">
 
-						<!-- �rea de Busca -->
+						<!-- ï¿½rea de Busca -->
 						<input type="text" placeholder="Buscar produto" name="busca"
 							value="<%=nomeBusca%>">
 						<button type="submit" value="Buscar">
@@ -176,8 +177,8 @@
 							<form class="">
 								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" placeholder="C�digo do produto"> <input
-										type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Cï¿½digo do produto">
+									<input type="text" class="form-control shadow-none"
 										id="recipient-name" placeholder="Nome do produto">
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
@@ -206,15 +207,15 @@
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Descri��o"> <input
+										id="recipient-name" placeholder="Descriï¿½ï¿½o"> <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Localiza��o">
+										id="recipient-name" placeholder="Localizaï¿½ï¿½o">
 								</div>
 								<div class="form-group d-flex gap-3 mb-2 flex-row">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade M�xima"> <input
-										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade M�nima">
+										id="recipient-name" placeholder="Quantidade Mï¿½xima">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Quantidade Mï¿½nima">
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn text-white"
@@ -240,7 +241,7 @@
 							<th scope="col">Nome</th>
 							<th scope="col">Categoria</th>
 							<th scope="col">Fornecedor</th>
-							<th scope="col">A��es</th>
+							<th scope="col">Ações</th>
 						</tr>
 
 

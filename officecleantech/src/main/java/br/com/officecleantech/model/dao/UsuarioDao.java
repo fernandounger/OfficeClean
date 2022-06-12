@@ -31,8 +31,10 @@ public class UsuarioDao extends Conexao {
 		return mensagem;
 	}
 
-	public Usuario logar(/* String name, */ String login, String password) {
+	public  Usuario   logar(/* String name, */ String login, String password) {
 		Usuario u = null;
+
+		String mensagem = "";
 
 		try {
 			String sql = "SELECT * FROM Usuario WHERE Login = ? AND Senha = ?";
@@ -51,15 +53,21 @@ public class UsuarioDao extends Conexao {
 				u.setNome(rs.getString(2));
 				u.setLogin(rs.getString(3));
 				// u.setSenha(rs.getString("Senha"));
+
+				mensagem = "sucesso na busca";
+			}else {
+				mensagem = "erro na busca";
 			}
+
 		} catch (SQLException e) {
-			System.out.println("Erro na Consulta");
+			
 			e.printStackTrace();
 		} finally {
+			
 			fecharConexao();
 		}
-
 		return u;
+
 	}
 
 }

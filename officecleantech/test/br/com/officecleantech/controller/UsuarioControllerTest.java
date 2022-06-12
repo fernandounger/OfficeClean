@@ -1,4 +1,4 @@
-package br.com.officecleantech.model.dao;
+package br.com.officecleantech.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,18 +8,19 @@ import org.junit.jupiter.api.Test;
 
 import br.com.officecleantech.model.entidade.Usuario;
 
-class UsuarioDaoTest {
+class UsuarioControllerTest {
 
 	@Disabled
 	@Test
 	@DisplayName("teste de cadastro")
 	void testCadastro() {
-		UsuarioDao dao = new UsuarioDao();
+		UsuarioController controller = new UsuarioController();
 		Usuario u = new Usuario();
-		u.setLogin("x@email.com");
+//		u.setNome("sujeito");
+		u.setLogin("y@email.com");
 		u.setSenha("123");
 
-		assertEquals("sucesso no cadastro", dao.cadastrar(u));
+		assertEquals("sucesso no cadastro", controller.cadastrarUsuario(u));
 
 	}
 
