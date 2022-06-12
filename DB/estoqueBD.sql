@@ -63,7 +63,12 @@ insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('lorem', 'lorem', 'lorem', 'lorem', 'lorem', 1);
 insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 2);
-
+insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
+values ('loremlorem', 'ricardo', 'loremlorem', 'loremlorem', 'loremlorem', 2);
+insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
+values ('loremlorem', 'robson', 'loremlorem', 'loremlorem', 'loremlorem', 2);
+insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
+values ('loremlorem', 'rodrigo', 'loremlorem', 'loremlorem', 'loremlorem', 2);
 create or replace view listagemFornecedor as 
 select 
 f.Id, f.Nome, f.Telefone, f.Email,

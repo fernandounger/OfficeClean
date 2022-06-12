@@ -21,5 +21,17 @@ class ProdutoDaoTest {
 //		assertTrue(lista.size()>0);
 		assertEquals(lista.size(), 1);
 	}
+	
+//	@Disabled
+	@Test
+	@DisplayName("teste de busca")
+	void testBusca() {
+		ProdutoDao dao = new ProdutoDao();
+		ArrayList<Produto> lista = dao.listar("a");
+
+//		assertTrue(lista.size()>0);
+		assertEquals(lista.size(), 1);
+	}
+	
 
 }
