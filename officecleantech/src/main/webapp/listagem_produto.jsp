@@ -84,7 +84,7 @@
 					</div>
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle ">Relatórios</a>
+					aria-expanded="false" class="dropdown-toggle ">RelatÃ³rios</a>
 
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
@@ -95,7 +95,7 @@
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a href="#">Saída</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="#">SaÃ­da</a>
 
 							</div>
 						</li>
@@ -108,9 +108,15 @@
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a href="#">Funcionários</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="#">UsuÃ¡rios</a>
 					</div>
 				</li>
+				<li id="li-logoff">
+					<div class="icons-menu logoff">
+					  <i class="fa-solid fa-power-off"></i>
+					  <a href="#">Sair</a>
+					</div>
+				  </li>
 			</ul>
 
 		</nav>
@@ -140,7 +146,7 @@
 				<div class="search-container">
 					<form action="listagem_produto.jsp" method="post">
 
-						<!-- Área de Busca -->
+						<!-- ï¿½rea de Busca -->
 						<input type="text" placeholder="Buscar produto" name="busca"
 							value="<%=nomeBusca%>">
 						<button type="submit" value="Buscar">
@@ -170,7 +176,7 @@
 							<form class="">
 								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" placeholder="Código do produto"> <input
+										id="recipient-name" placeholder="Cï¿½digo do produto"> <input
 										type="text" class="form-control shadow-none"
 										id="recipient-name" placeholder="Nome do produto">
 								</div>
@@ -200,15 +206,15 @@
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Descrição"> <input
+										id="recipient-name" placeholder="Descriï¿½ï¿½o"> <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Localização">
+										id="recipient-name" placeholder="Localizaï¿½ï¿½o">
 								</div>
 								<div class="form-group d-flex gap-3 mb-2 flex-row">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade Máxima"> <input
+										id="recipient-name" placeholder="Quantidade Mï¿½xima"> <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade Mínima">
+										id="recipient-name" placeholder="Quantidade Mï¿½nima">
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn text-white"
@@ -234,7 +240,7 @@
 							<th scope="col">Nome</th>
 							<th scope="col">Categoria</th>
 							<th scope="col">Fornecedor</th>
-							<th scope="col">Ações</th>
+							<th scope="col">Aï¿½ï¿½es</th>
 						</tr>
 
 

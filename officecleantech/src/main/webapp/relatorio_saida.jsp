@@ -84,7 +84,13 @@
         <li>
           <div class="icons-menu">
             <i class="fa-solid fa-user-plus"></i>
-            <a href="#">Funcionários</a>
+            <a href="#">Usuários</a>
+          </div>
+        </li>
+        <li id="li-logoff">
+          <div class="icons-menu logoff">
+            <i class="fa-solid fa-power-off"></i>
+            <a href="#">Sair</a>
           </div>
         </li>
       </ul>
