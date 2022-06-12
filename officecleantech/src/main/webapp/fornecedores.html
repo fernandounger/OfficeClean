@@ -23,7 +23,6 @@
     crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/relatoriosaida.css">
   <link rel="stylesheet" href="./css/style.css">
   <!-- Scrollbar Custom CSS -->
   <link rel="stylesheet"
@@ -111,16 +110,53 @@
       </nav>
       <!-- Fim Menu -->
 
+      <!-- Large modal -->
       <header class="d-flex align-items-center gap-4 justify-content-between" id="header__btn">
+        <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal"
+          data-whatever="@mdo" style="background-color: #2678D1;" id="btnProduto">Cadastrar Fornecedor</button>
         <div class="search-container">
           <form action="" method="post">
-            <input type="text" placeholder="Buscar saída" name="search">
+            <input type="text" placeholder="Buscar fornecedor" name="search">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
       </header>
+      <!-- Modal de Produto -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="border: 0;">
+              <h5 class="modal-title" id="exampleModalLabel"></h5>
+              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="background-color: red; border:none; border-radius: 8px;
+                    padding: 5px 10px;">
+                <span aria-hidden="true" class="">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="">
+                <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+                  <input type="text" class="form-control shadow-none" id="recipient-name"
+                    placeholder="Nome do fornecedor">
+                  <input type="email" class="form-control shadow-none" id="recipient-name" placeholder="email@dominio.com">
+                </div>
+                
+                <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="Telefone">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="CNPJ">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Site">
+                </div>
+                
+                <div class="modal-footer">
+                  <button type="submit" class="btn text-white w-100" style="background-color: #2678D1; letter-spacing: 7px; padding: 12px 0; font-weight: 600;">CADASTRAR</button>
+                </div>
+              </form>
+            </div>
 
-      <!-- Tabela de Saída -->
+          </div>
+        </div>
+      </div>
+      <!-- Fim Modal de Produto -->
 
       <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar"
         style="margin-top: 40px; border-radius: 8px;  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);">
@@ -132,126 +168,42 @@
               <th scope="col">Lorem</th>
               <th scope="col">Lorem</th>
               <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
+              <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">lorem</th>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              
+              <th scope="row">Lorem</th>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>
+                <div class="d-flex gap-2">
+                  <div class="text-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </div>
+                  <div class="text-danger">
+                    </i><i class="fa-solid fa-xmark"></i>
+                  </div>
+                </div>
+              </td>
 
             </tr>
             <tr>
               <th scope="row">Lorem</th>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-
-            </tr>
-            <tr>
-              <th scope="row">lorem</th>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              
-
-            </tr>
-            <tr>
-              <th scope="row">Lorem</th>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-
-            </tr>
-            <tr>
-              <th scope="row">lorem</th>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              
-
-            </tr>
-            <tr>
-              <th>Lorem</th>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-
-            </tr>
-            <tr>
-              <th scope="row">lorem</th>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              
-
-            </tr>
-            <tr>
-              <th scope="row">Lorem</th>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-
-            </tr>
-            <tr>
-              <th scope="row">lorem</th>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              <td>lorem</td>
-              
-
-            </tr>
-            <tr>
-              <th scope="row">Lorem</th>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
-              <td>Lorem</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>Cell</td>
+              <td>
+                <div class="d-flex gap-2">
+                  <div class="text-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </div>
+                  <div class="text-danger">
+                    </i><i class="fa-solid fa-xmark"></i>
+                  </div>
+                </div>
+              </td>
 
             </tr>
 
