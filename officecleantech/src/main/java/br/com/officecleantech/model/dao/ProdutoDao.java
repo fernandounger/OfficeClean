@@ -31,7 +31,7 @@ public class ProdutoDao extends Conexao {
 				f.setNome(rs.getString("Fornecedor"));
 				p.setFornecedor(f);
 				lista.add(p);
-				
+
 			}
 			System.out.println("Sucesso na Listagem");
 
@@ -44,63 +44,4 @@ public class ProdutoDao extends Conexao {
 
 		return lista;
 	}
-
-//	public Produto buscar(long id) {
-//		Produto produto = null;
-//
-//		String sql = "select * from listagemProduto " + "where CodigoBarra = ?";
-//
-//		try {
-//			PreparedStatement ps = getConexao().prepareStatement(sql);
-//			ps.setLong(1, id);
-//			
-//
-//			ResultSet rs = ps.executeQuery();
-//			if (rs.next()) {
-//				produto = new Produto();
-//				produto.setCodigoBarra(rs.getLong("CodigoBarra"));
-//				produto.setNome(rs.getString("Nome"));
-//				produto.setCategoria(rs.getString("Categoria"));
-//			}
-//			System.out.println("Sucesso no Buscar");
-//		} catch (SQLException e) {
-//			System.out.println("Falha no Buscar");
-//			e.printStackTrace();
-//		} finally {
-//			fecharConexao();
-//		}
-//
-//		return produto;
-//	}
-
-	public Produto buscar(long id) {
-
-		String sql = "select * from listagemProduto WHERE CodigoBarra = ?";
-
-		Produto p = null;
-
-		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, id);
-
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				p = new Produto();
-				p.setCodigoBarra(rs.getLong("CodigoBarra"));
-				p.setNome(rs.getString("Nome"));
-
-			}
-			System.out.println("Sucesso no Buscar");
-
-		} catch (SQLException e) {
-			System.out.println("Falha no Buscar");
-			e.printStackTrace();
-		} finally {
-			fecharConexao();
-		}
-
-		return p;
-
-	}
-
 }

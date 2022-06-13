@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
+import br.com.officecleantech.model.entidade.Produto;
 
 public class FornecedorDao extends Conexao {
 

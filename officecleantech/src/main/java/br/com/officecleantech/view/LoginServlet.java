@@ -48,8 +48,9 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(/* name+ " - "+*/login + " - " + password);
 
 		UsuarioController uc = new UsuarioController();
-		Usuario u = uc.logarUsuario(/*name,*/ login, password);
-
+//		Usuario u = uc.logarUsuario(/*name,*/ login, password);
+		Usuario u = new Usuario();
+		u = uc.logarUsuario(/*name,*/ login, password);
 		String destino = "";
 		if (u != null) {
 			HttpSession sessao = request.getSession();
