@@ -58,7 +58,8 @@ public class LoginServlet extends HttpServlet {
 			sessao.setAttribute("usuarioLogado", u);
 			destino = "usuarios.jsp";
 		} else {
-			request.setAttribute("Error", "Acesso Negado");
+//			request.setAttribute("Error", "Acesso Negado");
+			request.setAttribute("Error", "");
 			destino = "login.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
