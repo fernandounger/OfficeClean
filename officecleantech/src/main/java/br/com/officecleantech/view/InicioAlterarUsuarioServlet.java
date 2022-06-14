@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class InicioAlterarUsuarioSerlvet
@@ -39,6 +40,7 @@ public class InicioAlterarUsuarioServlet extends HttpServlet {
 
 		try {
 			get = Long.parseLong(strGet);
+			
 
 		} catch (Exception e) {
 
@@ -52,9 +54,18 @@ public class InicioAlterarUsuarioServlet extends HttpServlet {
 
 		RequestDispatcher rd = request.getRequestDispatcher("atualizar_usuarios.jsp");
 		rd.forward(request, response);
-	}
 
-	
+//		if (u2 != null) {
+//
+//			request.setAttribute("redirecionador2", u2);
+//
+//			RequestDispatcher rd = request.getRequestDispatcher("atualizar_usuarios.jsp");
+//			rd.forward(request, response);
+//		} else {
+//			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+//			rd.forward(request, response);
+//		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

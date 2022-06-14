@@ -24,7 +24,7 @@ public class UsuarioDao extends Conexao {
 //			mensagem = "sucesso no cadastro";
 		} catch (SQLException e) {
 //			mensagem = "falha no cadastro";
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 //			System.out.println(mensagem);
 			fecharConexao();
@@ -62,12 +62,12 @@ public class UsuarioDao extends Conexao {
 
 		} catch (SQLException e) {
 
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 
 			fecharConexao();
 		}
-		return u;
+		return u /* mensagem */;
 
 	}
 
@@ -96,7 +96,7 @@ public class UsuarioDao extends Conexao {
 //			System.out.println("Sucesso na Listagem");
 		} catch (SQLException e) {
 //			System.out.println("Falha na Listagem");
-			e.printStackTrace();
+//			e.printStackTrace();
 
 		} finally {
 			fecharConexao();
@@ -127,7 +127,7 @@ public class UsuarioDao extends Conexao {
 
 		} catch (SQLException e) {
 //			System.out.println("falha na pesquisa");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		} finally {
 			fecharConexao();
@@ -136,10 +136,11 @@ public class UsuarioDao extends Conexao {
 		return user;
 	}
 
-	public void alterar(Usuario c) {
+	public /* void */ String alterar(Usuario c) {
 		String sql = "update Usuario set" + " Nome = ?, " + "Login = ?, " + " Senha = ?, " + "NivelAcesso = ?"
 				+ " where Id = ?";
 
+		String mensagem = "";
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setString(1, c.getNome());
@@ -149,28 +150,35 @@ public class UsuarioDao extends Conexao {
 			ps.setLong(5, c.getId());
 			ps.execute();
 
+//			mensagem = "sucesso";
 		} catch (SQLException e) {
 //			System.out.println("Erro no Update");
-			e.printStackTrace();
+//			mensagem = "falha";
+//			e.printStackTrace();
 		} finally {
 			fecharConexao();
 		}
+		return mensagem;
 	}
 
-	public void excluir(Usuario u) {
+	public String excluir(Usuario u) {
 		String sql = "delete from Usuario where Id = ?";
 
+		String mensagem = "";
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, u.getId());
+			ps.setLong(1, /* i */u.getId());
 
 			ps.execute();
+//			mensagem = "sucesso na exclusao";
 		} catch (SQLException e) {
 //			System.out.println("Erro na exclusão");
-			e.printStackTrace();
+//			mensagem = "falha na exclusao";
+//			e.printStackTrace();
 		} finally {
 			fecharConexao();
 		}
+		return mensagem;
 	}
 
 }

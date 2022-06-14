@@ -8,9 +8,9 @@ public class Usuario {
 	private String NivelAcesso;
 
 	public Usuario() {
-		this.Nome = "";
-		this.Login = "";
-		this.Senha = "";
+		this.Nome = null;
+		this.Login = null;
+		this.Senha = null;
 		this.NivelAcesso = "";
 	}
 	

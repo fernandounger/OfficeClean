@@ -30,12 +30,12 @@ public class UsuarioController {
 		return dao.pesquisar(id);
 	}
 
-	public void alterarUsuario(Usuario u) {
-		dao.alterar(u);
+	public /*void*/String alterarUsuario(Usuario u) {
+		return dao.alterar(u);
 	}
 
-	public void excluirUsuario(Usuario u) {
-		dao.excluir(u);
+	public String excluirUsuario(Usuario u) {
+		return dao.excluir(u);
 	}
 
 }
