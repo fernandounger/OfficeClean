@@ -20,10 +20,10 @@ public class Conexao {
 			System.out.println("Conectado com sucesso");
 
 		} catch (ClassNotFoundException e) {
-			System.out.println("Não Encontrou o Driver");
+//			System.out.println("Não Encontrou o Driver");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("Erro ao acessar o banco de dados");
+//			System.out.println("Erro ao acessar o banco de dados");
 			e.printStackTrace();
 		}
 		return conn;
@@ -35,7 +35,7 @@ public class Conexao {
 			System.out.println("Conexão Fechada");
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Deu Problema");
+//			System.out.println("Deu Problema");
 			e.printStackTrace();
 		}
 	}
