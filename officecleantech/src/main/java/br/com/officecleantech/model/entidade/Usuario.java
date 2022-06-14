@@ -11,6 +11,7 @@ public class Usuario {
 		this.Nome = "";
 		this.Login = "";
 		this.Senha = "";
+		this.NivelAcesso = "";
 	}
 	
 	public long getId() {

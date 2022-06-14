@@ -9,18 +9,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class SignUpServlet
+ * Servlet implementation class InicioAlterarUsuarioSerlvet
  */
-public class SignUpServlet extends HttpServlet {
+public class InicioAlterarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public SignUpServlet() {
+	public InicioAlterarUsuarioServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,9 +30,31 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String strGet = request.getParameter("redirecionador");
+
+		long get = 0;
+
+//		System.out.println(strGet);
+
+		try {
+			get = Long.parseLong(strGet);
+
+		} catch (Exception e) {
+
+		}
+		UsuarioController controller = new UsuarioController();
+		Usuario u2 = controller.pesquisarUsuario(get);
+
+//		System.out.println(u2.getNome());
+
+		request.setAttribute("redirecionador2", u2);
+
+		RequestDispatcher rd = request.getRequestDispatcher("atualizar_usuarios.jsp");
+		rd.forward(request, response);
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -41,26 +62,8 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("Nome");
-		String login = request.getParameter("Login");
-		String password = request.getParameter("Senha");
-		// String nivelAcesso = request.getParameter("NivelAcesso");
-
-		System.out.println(name + " - " + login + " - " + password/* +" - "+nivelAcesso */);
-
-		Usuario u = new Usuario();
-		u.setNome(name);
-		u.setLogin(login);
-		u.setSenha(password);
-		// u.setNivelAcesso(nivelAcesso);
-
-		UsuarioController uc = new UsuarioController();
-		uc.cadastrarUsuario(u);
-		
-
-		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-		rd.forward(request, response);
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

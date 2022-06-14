@@ -13,15 +13,11 @@ CREATE TABLE IF NOT EXISTS Usuario (
   Nome VARCHAR(100) NOT NULL,
   Login VARCHAR(45) NOT NULL,
   Senha VARCHAR(45) NOT NULL,
-  NivelAcesso VARCHAR(45) NULL
+  NivelAcesso VARCHAR(45) default NULL
 );
 SELECT * FROM Usuario;
 INSERT INTO Usuario (Nome, Login, Senha)
-VALUES ('Administrador', 'admin', '123');
-INSERT INTO Usuario (Nome, Login, Senha)
-VALUES ('Isaque', 'zaque@email.com', '123');
-
-
+VALUES ('Administrador', 'admin@email.com', '123');
 
 -- -----------------------------------------------------
 -- Table Endereco
@@ -39,6 +35,7 @@ CREATE TABLE IF NOT EXISTS Endereco (
 );
 
 SELECT * FROM Endereco;
+
 insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
 values ('lorem', 0, 'lorem','lorem','lorem','RJ','lorem');
 insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
@@ -69,6 +66,7 @@ insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('loremlorem', 'robson', 'loremlorem', 'loremlorem', 'loremlorem', 2);
 insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
 values ('loremlorem', 'rodrigo', 'loremlorem', 'loremlorem', 'loremlorem', 2);
+use estoqueBD;
 create or replace view listagemFornecedor as 
 select 
 f.Id, f.Nome, f.Telefone, f.Email,

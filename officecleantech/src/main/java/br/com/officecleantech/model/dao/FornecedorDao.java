@@ -3,13 +3,63 @@ package br.com.officecleantech.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
-import br.com.officecleantech.model.entidade.Produto;
 
 public class FornecedorDao extends Conexao {
+
+	public String cadastrar(Fornecedor f) {
+		String mensagem = "";
+
+		String sql = "INSERT INTO Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP) VALUES(?,?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, f.getEndereco().getLogradouro());
+			ps.setInt(2, f.getEndereco().getNumero());
+			ps.setString(3, f.getEndereco().getComplemento());
+			ps.setString(4, f.getEndereco().getBairro());
+			ps.setString(5, f.getEndereco().getCidade());
+			ps.setString(6, f.getEndereco().getEstado());
+			ps.setString(7, f.getEndereco().getCep());
+			
+
+			ps.executeUpdate();
+
+			// Fim primeira inserção
+
+			// recuperando last_inser_id()
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int valorEndereco = rs.getInt(1);
+
+			// Segunda Inserção
+			sql = "INSERT INTO Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id) VALUES(?,?,?,?,?,?)";
+
+			ps = getConexao().prepareStatement(sql);
+			ps.setString(1, f.getCnpj());
+			ps.setString(2, f.getNome());
+			ps.setString(3, f.getTelefone());
+			ps.setString(4, f.getEmail());
+			ps.setString(5, f.getSite());
+			ps.setInt(6, valorEndereco);
+
+			ps.executeUpdate();
+
+//			System.out.print(valorPessoa);
+//			System.out.print(valorEndereco);
+			mensagem = "tudo certo";
+		} catch (SQLException e) {
+			mensagem = "deu ruim";
+			e.printStackTrace();
+		} finally {
+			fecharConexao();
+		}
+
+		return mensagem;
+	}
 
 	public ArrayList<Fornecedor> listar(String nomeBusca) {
 		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();

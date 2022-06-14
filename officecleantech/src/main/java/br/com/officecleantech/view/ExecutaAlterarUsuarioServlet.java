@@ -9,18 +9,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ExecutaAlterarUsuarioServlet
  */
-public class LoginServlet extends HttpServlet {
+public class ExecutaAlterarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LoginServlet() {
+	public ExecutaAlterarUsuarioServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,28 +40,34 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		String name = request.getParameter("Nome");
-		String login = request.getParameter("Login");
-		String password = request.getParameter("Senha");
 
-//		System.out.println(/* name+ " - "+*/login + " - " + password);
+		String name = request.getParameter("name");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
+		String accessLevel = request.getParameter("accessLevel");
+		String strId = request.getParameter("Id");
+
+//		System.out.println(name);
+
+		long id = 0;
+		try {
+			id = Long.parseLong(strId);
+		} catch (Exception e) {
+			System.out.println("error");
+		}
+		Usuario user = new Usuario();
+		user.setId(id);
+		user.setNome(name);
+		user.setLogin(login);
+		user.setSenha(password);
+		user.setNivelAcesso(accessLevel);
 
 		UsuarioController controller = new UsuarioController();
-//		Usuario u = uc.logarUsuario(/*name,*/ login, password);
-		Usuario u = new Usuario();
-		u = controller.logarUsuario(/*name,*/ login, password);
-		String destino = "";
-		if (u != null) {
-			HttpSession sessao = request.getSession();
+		controller.alterarUsuario(user);
 
-			sessao.setAttribute("usuarioLogado", u);
-			destino = "usuarios.jsp";
-		} else {
-			request.setAttribute("Error", "Acesso Negado");
-			destino = "login.jsp";
-		}
-		RequestDispatcher rd = request.getRequestDispatcher(destino);
+		RequestDispatcher rd = request.getRequestDispatcher("usuarios.jsp");
 		rd.forward(request, response);
+
 	}
 
 }

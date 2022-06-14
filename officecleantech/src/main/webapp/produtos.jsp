@@ -105,12 +105,12 @@
 				<li>
 					<div class="icons-menu">
 
-						<i class="fa-solid fa-users"></i> <a href="#">Fornecedores</a>
+						<i class="fa-solid fa-users"></i> <a href="fornecedores.jsp">Fornecedores</a>
 					</div>
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a href="#">Usuários</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuários</a>
 					</div>
 				</li>
 				<li id="li-logoff">
@@ -145,7 +145,7 @@
 					style="background-color: #2678D1;" id="btnProduto">Adicionar
 					Produto</button>
 				<div class="search-container">
-					<form action="listagem_produto.jsp" method="post">
+					<form action="" method="post">
 
 						<!-- ï¿½rea de Busca -->
 						<input type="text" placeholder="Buscar produto" name="busca"
