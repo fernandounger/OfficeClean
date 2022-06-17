@@ -1,13 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page import="br.com.officecleantech.controller.UsuarioController"%>
-<%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
 <%@ page import="java.util.ArrayList"%>
-
+<%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
-
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,9 +35,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 </head>
-<meta charset="UTF-8">
-<body>
 
+<body>
 	<!-- tratamento login -->
 	<%
 	if (session.getAttribute("usuarioLogado") == null) {
@@ -51,17 +46,6 @@
 	Usuario u = (Usuario) session.getAttribute("usuarioLogado");
 	%>
 	<!-- fim tratamento login-->
-
-	<!-- tratamento busca -->
-	<%
-	String nomeBusca = request.getParameter("busca");
-
-	if (nomeBusca == null) {
-		nomeBusca = "";
-	}
-	/* System.out.println(nomeBusca); */
-	%>
-	<!-- fim tratamento busca -->
 
 	<div class="wrapper">
 		<!-- Sidebar  -->
@@ -82,11 +66,11 @@
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-box-archive"></i> <a href="produtos.jsp">Produtos</a>
+						<i class="fa-solid fa-box-archive"></i> <a href="#">Produtos</a>
 					</div>
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle ">RelatÃ³rios</a>
+					aria-expanded="false" class="dropdown-toggle ">Relatórios</a>
 
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
@@ -97,7 +81,7 @@
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a href="#">SaÃ­da</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="#">Saída</a>
 
 							</div>
 						</li>
@@ -110,7 +94,7 @@
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">UsuÃ¡rios</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuários</a>
 					</div>
 				</li>
 				<li id="li-logoff">
@@ -142,55 +126,77 @@
 				id="header__btn">
 				<button type="button" class="btn text-white" data-toggle="modal"
 					data-target="#exampleModal" data-whatever="@mdo"
-					style="background-color: #2678D1;" id="btnProduto">Cadastrar
-					UsuÃ¡rios</button>
+					style="background-color: #2678D1;" id="btnProduto">Adicionar
+					Produto</button>
 				<div class="search-container">
-					<form action="usuarios.jsp" method="post">
-						<input type="text" placeholder="Buscar UsuÃ¡rios" name="busca"
-							<%=nomeBusca%>>
+					<form action="" method="post">
+						<input type="text" placeholder="Buscar produto" name="search">
 						<button type="submit">
 							<i class="fa fa-search"></i>
 						</button>
 					</form>
 				</div>
 			</header>
-			<!-- Modal de Cadastro -->
+			<!-- Modal de Produto -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-md"
-					role="document">
+				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header" style="border: 0;">
 							<h5 class="modal-title" id="exampleModalLabel"></h5>
 							<button type="button" class="close text-white"
-								data-dismiss="modal2" aria-label="Close"
+								data-dismiss="modal" aria-label="Close"
 								style="background-color: red; border: none; border-radius: 8px; padding: 5px 10px;">
 								<span aria-hidden="true" class="">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<form class="" method="post" action="CadastrarUsuarioServlet">
-								<div
-									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+							<form class="">
+								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" placeholder="Código do produto"> <input
+										type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Nome do produto">
+								</div>
+								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" placeholder="Valor Unidade"> <select
+										class="form-select shadow-none"
+										aria-label="Default select example"
+										style="padding: 0.375rem 0.75rem">
+										<option selected>Categoria</option>
+										<option value="1">One</option>
+										<option value="2">Two</option>
+										<option value="3">Three</option>
+									</select>
+								</div>
+								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Nome do UsuÃ¡rio" name="name"
-										required> <input type="email"
-										class="form-control shadow-none" id="recipient-name"
-										placeholder="email@dominio.com" name="login" required>
+										id="recipient-name" placeholder="Estoque Atual"> <select
+										class="form-select shadow-none"
+										aria-label="Default select example"
+										style="padding: 0.375rem 0.75rem">
+										<option selected>Fornecedor</option>
+										<option value="1">One</option>
+										<option value="2">Two</option>
+										<option value="3">Three</option>
+									</select>
 								</div>
-
-								<div
-									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
-									<input type="password" class="form-control shadow-none"
-										id="recipient-name" placeholder="senha" name="password"
-										required> <input type="text"
-										class="form-control shadow-none" id="recipient-name"
-										placeholder="NÃ­vel de Acesso" name="accessLevel">
+								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Descrição"> <input
+										type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Localização">
 								</div>
-
+								<div class="form-group d-flex gap-3 mb-2 flex-row">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Quantidade Máxima"> <input
+										type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Quantidade Mínima">
+								</div>
 								<div class="modal-footer">
-									<button type="submit" class="btn text-white w-100"
-										style="background-color: #2678D1; letter-spacing: 7px; padding: 12px 0; font-weight: 600;">CADASTRAR</button>
+									<button type="submit" class="btn text-white"
+										style="background-color: #77B800;">Salvar Produto</button>
 								</div>
 							</form>
 						</div>
@@ -198,7 +204,7 @@
 					</div>
 				</div>
 			</div>
-			<!-- Fim Modal de Cadastro -->
+			<!-- Fim Modal de Produto -->
 
 			<div
 				class="table-responsive table-wrapper-scroll-y my-custom-scrollbar"
@@ -206,61 +212,53 @@
 				<table class="table">
 					<thead
 						style="box-shadow: 0px 4px 4px rgb(0 0 0/ 5%); border-radius: 8px;">
-						<tr>
-							<th scope="Id">Id</th>
-							<th scope="Nome">Nome</th>
-							<th scope="Telefone">Login</th>
-							<th scope="Email">Senha</th>
-							<th scope="Estado">NÃ­vel de Acesso</th>
-							<th scope="Estado">AÃ§Ãµes</th>
 
+						<tr>
+							<th scope="col">Cod</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Categoria</th>
+							<th scope="col">Fornecedor</th>
+							<th scope="col">Ações</th>
 						</tr>
+
+
 					</thead>
 					<tbody>
-
-						<%
-						UsuarioController controller = new UsuarioController();
-
-						ArrayList<Usuario> usuarios = controller.listarUsuario(nomeBusca);
-
-						for (Usuario user : usuarios) {
-						%>
-
-						<tr>
-							<!-- <th scope="row">Lorem</th> -->
-
-							<td><%=user.getId()%></td>
-							<td><%=user.getNome()%></td>
-							<td><%=user.getLogin()%></td>
-							<td><%=user.getSenha()%></td>
-							<td><%=user.getNivelAcesso()%></td>
-
-
+						<!-- 						<tr>
+							<th scope="row">151412</th>
+							<td>Cell</td>
+							<td>Cell</td>
+							<td>Cell</td>
 							<td>
-								<!-- BotÃ£o de Update -->
 								<div class="d-flex gap-2">
 									<div class="text-primary" data-toggle="modal"
-										data-target="#exampleModal2">
-										<a
-											href="InicioAlterarUsuarioServlet?redirecionador=<%=user.getId()%>">
-											<i class="fa-solid fa-pen-to-square"></i>
-										</a>
-
+										data-target="#exampleModal">
+										<i class="fa-solid fa-pen-to-square"></i>
 									</div>
 									<div class="text-danger">
-
-										<a href="ExcluirUsuarioServlet?get=<%=user.getId()%>"
-											onclick="if(!confirm('Deseja excluir esse registro?')) {return false}"><i
-											class="fa-solid fa-xmark"></i></a>
+										</i><i class="fa-solid fa-xmark"></i>
+									</div>
+								</div>
+							</td>
+						</tr> -->
+						<tr>
+							<th scope="row">679432</th>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<div class="d-flex gap-2">
+									<div class="text-primary" data-toggle="modal"
+										data-target="#exampleModal">
+										<i class="fa-solid fa-pen-to-square"></i>
+									</div>
+									<div class="text-danger">
+										<i class="fa-solid fa-xmark"></i>
 									</div>
 								</div>
 							</td>
 
 						</tr>
-
-						<%
-						}
-						%>
 					</tbody>
 				</table>
 			</div>
@@ -290,7 +288,6 @@
 				$("#sidebar").mCustomScrollbar({
 					theme : "minimal"
 				});
-
 				$('#sidebarCollapse').on('click', function() {
 					$('#sidebar, #content').toggleClass('active');
 					$('.collapse.in').toggleClass('in');
