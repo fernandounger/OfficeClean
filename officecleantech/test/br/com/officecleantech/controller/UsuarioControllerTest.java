@@ -13,7 +13,7 @@ import br.com.officecleantech.model.entidade.Usuario;
 
 class UsuarioControllerTest {
 
-	@Disabled
+//	@Disabled
 	@Test
 	@DisplayName("teste de login")
 	void testLoginUsuario() {
