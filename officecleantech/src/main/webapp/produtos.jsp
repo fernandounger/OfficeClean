@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 </head>
-
 <body>
 	<!-- tratamento login -->
 	<%
@@ -46,23 +45,20 @@
 	Usuario u = (Usuario) session.getAttribute("usuarioLogado");
 	%>
 	<!-- fim tratamento login-->
-
 	<div class="wrapper">
-		<!-- Sidebar  -->
+		<!-- Sidebar -->
 		<nav id="sidebar">
 			<div class="sidebar-header">
 				<a href="#"> <img src="./img/oct.png"
 					alt="Logo Office Clean Tech" style="height: 60px;">
 				</a>
 			</div>
-
 			<ul class="list-unstyled components">
 				<li class="active">
 					<div class="icons-menu">
 						<i class="fa-solid fa-house"></i> <a href="#homeSubmenu"
 							data-toggle="collapse" aria-expanded="false">Dashboard</a>
 					</div>
-
 				</li>
 				<li>
 					<div class="icons-menu">
@@ -71,24 +67,20 @@
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse"
 					aria-expanded="false" class="dropdown-toggle ">Relatórios</a>
-
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
 							<div class="icons-menu">
 								<i class="fa-solid fa-arrow-up"></i> <a href="#">Entrada</a>
-
 							</div>
 						</li>
 						<li>
 							<div class="icons-menu">
 								<i class="fa-solid fa-arrow-down"></i> <a href="#">Saída</a>
-
 							</div>
 						</li>
 					</ul></li>
 				<li>
 					<div class="icons-menu">
-
 						<i class="fa-solid fa-users"></i> <a href="#">Fornecedores</a>
 					</div>
 				</li>
@@ -103,23 +95,19 @@
 					</div>
 				</li>
 			</ul>
-
 		</nav>
-		<!-- Fim Sidebar  -->
+		<!-- Fim Sidebar -->
 		<main id="content">
 			<!-- Menu -->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid">
-
 					<button type="button" id="sidebarCollapse" class="btn text-white"
 						style="background-color: #77B800;">
 						<i class="fas fa-align-left"></i> <span>Menu</span>
 					</button>
-
 				</div>
 			</nav>
 			<!-- Fim Menu -->
-
 			<!-- Large modal -->
 			<header
 				class="d-flex align-items-center gap-4 justify-content-between"
@@ -152,13 +140,13 @@
 						</div>
 						<div class="modal-body">
 							<form class="">
-								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="number" class="form-control shadow-none"
 										id="recipient-name" placeholder="Código do produto"> <input
 										type="text" class="form-control shadow-none"
 										id="recipient-name" placeholder="Nome do produto">
 								</div>
-								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="number" class="form-control shadow-none"
 										id="recipient-name" placeholder="Valor Unidade"> <select
 										class="form-select shadow-none"
@@ -182,7 +170,7 @@
 										<option value="3">Three</option>
 									</select>
 								</div>
-								<div class="form-group d-flex gap-4 mb-2 flex-row  columnInput">
+								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="text" class="form-control shadow-none"
 										id="recipient-name" placeholder="Descrição"> <input
 										type="text" class="form-control shadow-none"
@@ -200,19 +188,16 @@
 								</div>
 							</form>
 						</div>
-
 					</div>
 				</div>
 			</div>
 			<!-- Fim Modal de Produto -->
-
 			<div
 				class="table-responsive table-wrapper-scroll-y my-custom-scrollbar"
 				style="margin-top: 40px; border-radius: 8px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);">
 				<table class="table">
 					<thead
 						style="box-shadow: 0px 4px 4px rgb(0 0 0/ 5%); border-radius: 8px;">
-
 						<tr>
 							<th scope="col">Cod</th>
 							<th scope="col">Nome</th>
@@ -220,11 +205,9 @@
 							<th scope="col">Fornecedor</th>
 							<th scope="col">Ações</th>
 						</tr>
-
-
 					</thead>
 					<tbody>
-						<!-- 						<tr>
+						<tr>
 							<th scope="row">151412</th>
 							<td>Cell</td>
 							<td>Cell</td>
@@ -240,12 +223,12 @@
 									</div>
 								</div>
 							</td>
-						</tr> -->
+						</tr>
 						<tr>
 							<th scope="row">679432</th>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>Cell</td>
+							<td>Cell</td>
+							<td>Cell</td>
 							<td>
 								<div class="d-flex gap-2">
 									<div class="text-primary" data-toggle="modal"
@@ -253,18 +236,15 @@
 										<i class="fa-solid fa-pen-to-square"></i>
 									</div>
 									<div class="text-danger">
-										<i class="fa-solid fa-xmark"></i>
+										</i><i class="fa-solid fa-xmark"></i>
 									</div>
 								</div>
 							</td>
-
 						</tr>
 					</tbody>
 				</table>
 			</div>
-
 		</main>
-
 		<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -282,7 +262,6 @@
 		<!-- jQuery Custom Scroller CDN -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#sidebar").mCustomScrollbar({
@@ -296,5 +275,4 @@
 			});
 		</script>
 </body>
-
 </html>

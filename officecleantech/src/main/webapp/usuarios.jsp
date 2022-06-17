@@ -163,7 +163,7 @@
 						<div class="modal-header" style="border: 0;">
 							<h5 class="modal-title" id="exampleModalLabel"></h5>
 							<button type="button" class="close text-white"
-								data-dismiss="modal2" aria-label="Close"
+								data-dismiss="modal" aria-label="Close"
 								style="background-color: red; border: none; border-radius: 8px; padding: 5px 10px;">
 								<span aria-hidden="true" class="">&times;</span>
 							</button>
