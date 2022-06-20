@@ -13,11 +13,12 @@ CREATE TABLE IF NOT EXISTS Usuario (
   Nome VARCHAR(100) NOT NULL,
   Login VARCHAR(45) NOT NULL,
   Senha VARCHAR(45) NOT NULL,
-  NivelAcesso VARCHAR(45) default NULL
+  NivelAcesso VARCHAR(45) NULL
 );
+
 SELECT * FROM Usuario;
-INSERT INTO Usuario (Nome, Login, Senha)
-VALUES ('Administrador', 'admin@email.com', '123');
+
+insert into Usuario (Nome, Login, Senha) values ("Administrador", "admin@admin.com", "admin123");
 
 -- -----------------------------------------------------
 -- Table Endereco
@@ -36,10 +37,6 @@ CREATE TABLE IF NOT EXISTS Endereco (
 
 SELECT * FROM Endereco;
 
-insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
-values ('lorem', 0, 'lorem','lorem','lorem','RJ','lorem');
-insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP)
-values ('loremlorem', 1, 'loremlorem','loremlorem','loremlorem','SP','loremlorem');
 -- -----------------------------------------------------
 -- Table Fornecedor
 -- -----------------------------------------------------
@@ -53,38 +50,30 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
     Endereco_Id INT NOT NULL,
     FOREIGN KEY (Endereco_Id)
         REFERENCES Endereco (Id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 SELECT * FROM Fornecedor;
-insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
-values ('lorem', 'lorem', 'lorem', 'lorem', 'lorem', 1);
-insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
-values ('loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 'loremlorem', 2);
-insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
-values ('loremlorem', 'ricardo', 'loremlorem', 'loremlorem', 'loremlorem', 2);
-insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
-values ('loremlorem', 'robson', 'loremlorem', 'loremlorem', 'loremlorem', 2);
-insert  into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id)
-values ('loremlorem', 'rodrigo', 'loremlorem', 'loremlorem', 'loremlorem', 2);
-use estoqueBD;
+
 create or replace view listagemFornecedor as 
 select 
-f.Id, f.Nome, f.Telefone, f.Email,
-en.Estado, en.Cidade, en.CEP, en.Bairro, en.Logradouro, en.Numero, en.Complemento
+f.Id, f.CNPJ, f.Nome, f.Telefone, f.Email, f.Site,
+end.Logradouro, end.Numero, end.Complemento, end.Bairro, end.Cidade, end.Estado, end.CEP  
 from Fornecedor f
-inner join Endereco en
-on f.Endereco_Id = en.Id;
-select * from listagemFornecedor;
+inner join Endereco end
+on f.Endereco_Id = end.Id;
 
-select * from listagemFornecedor order by Id;
+delete f.*, end.* from Fornecedor as f, Endereco as end where f.Endereco_Id = 3 AND e.Id = 3;
 
+select * from listagemFornecedor order by Nome;
 
+delete from Fornecedor where Id = 2;
 
 -- -----------------------------------------------------
 -- Table Produto
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Produto (
-    CodigoBarra INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    CodigoBarra INT PRIMARY KEY NOT NULL,
     Nome VARCHAR(100) NOT NULL,
     Categoria VARCHAR(45) NOT NULL,
 		CHECK (Categoria IN ('Equipamentos de Limpeza' , 'Acessórios de Limpeza', 'Produtos Químicos de Limpeza', 'Papéis')),
@@ -94,24 +83,19 @@ CREATE TABLE IF NOT EXISTS Produto (
     Descricao VARCHAR(100) NOT NULL,
     FOREIGN KEY (Fornecedor_Id)
         REFERENCES Fornecedor (Id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
-SELECT * FROM Produto;
-insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
-values('lorem', 'Papéis', 1,'lorem', 'lorem', 'lorem');
-insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
-values('loremlorem', 'Equipamentos de Limpeza', 2,'loremlorem', 'loremlorem', 'loremlorem');
-insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao)
-values('ar', 'Equipamentos de Limpeza', 2,'loremlorem', 'loremlorem', 'loremlorem');
 
+SELECT * FROM Produto;
 
 create or replace view listagemProduto as 
 select 
-p.CodigoBarra, p.Nome, p.Categoria,
+p.CodigoBarra, p.Nome, p.Categoria, p.EstoqueMinimo, p.EstoqueMaximo, p.Descricao,
 f.Nome as Fornecedor
 from Produto p
 inner join Fornecedor f
 on p.Fornecedor_Id = f.Id;
+
 select * from listagemProduto;
 
 select * from listagemProduto order by Nome;
@@ -128,10 +112,10 @@ CREATE TABLE IF NOT EXISTS Estoque (
     LocalizacaoEstoque VARCHAR(45) NOT NULL,
     FOREIGN KEY (Produto_CodigoBarra)
         REFERENCES Produto (CodigoBarra)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Fornecedor_Id)
         REFERENCES Fornecedor (Id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 SELECT * FROM Estoque;
@@ -148,10 +132,10 @@ CREATE TABLE IF NOT EXISTS ControleEntrada (
     ValorUnitario DOUBLE(8,2) NOT NULL,
     FOREIGN KEY (Produto_CodigoBarra)
         REFERENCES Produto (CodigoBarra)
-        ON DELETE NO ACTION ON UPDATE NO ACTION,
+        ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (Fornecedor_Id)
         REFERENCES Fornecedor (Id)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 SELECT * FROM ControleEntrada;
@@ -168,16 +152,47 @@ CREATE TABLE IF NOT EXISTS ControleSaida (
     Justificativa VARCHAR(100) NOT NULL,
     FOREIGN KEY (Produto_CodigoBarra)
         REFERENCES Produto (CodigoBarra)
-        ON DELETE NO ACTION ON UPDATE NO ACTION
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 SELECT * FROM ControleSaida;
 
 -- -----------------------------------------------------
--- Table Procedure
+-- Table Procedure Cadastrar Endereço e Fornecedor
 -- -----------------------------------------------------
 DELIMITER //
-  CREATE PROCEDURE SP_AtualizaEstoque ( ES_Produto_CodigoBarra INT, ES_Quantidade INT, ES_ValorUnitario decimal(8,2))
+	CREATE PROCEDURE cadastra_End (C_Logradouro VARCHAR(100), C_Numero INT, C_Complemento VARCHAR(45), C_Bairro VARCHAR(45), C_Cidade VARCHAR(45), C_Estado CHAR(2), C_CEP VARCHAR(45), C_CNPJ VARCHAR(45), C_Nome VARCHAR(100), C_Telefone VARCHAR(45), C_Email VARCHAR(45), C_Site VARCHAR(100))
+BEGIN
+	START TRANSACTION;
+		INSERT INTO Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP) VALUES (C_Logradouro, C_Numero, C_Complemento, C_Bairro, C_Cidade, C_Estado, C_CEP);
+        SELECT LAST_INSERT_ID() INTO @idEnd;
+        INSERT INTO Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id) VALUES (C_CNPJ, C_Nome, C_Telefone, C_Email, C_Site, @idEnd);
+	COMMIT;
+END //
+DELIMITER ;
+
+CALL cadastra_End ('Rua da Flores', 10, '', 'Centro', 'Duque de Caxias', 'RJ', '25000-000', '12.123.123/0001-12', 'Revendedora', '(21)2345-6543', 'contato@revendedora.com', 'www.revendedora.com');
+
+-- -----------------------------------------------------
+-- Table Procedure Alterar Endereço e Fornecedor
+-- -----------------------------------------------------
+DELIMITER //
+	CREATE PROCEDURE altera_End (C_Logradouro VARCHAR(100), C_Numero INT, C_Complemento VARCHAR(45), C_Bairro VARCHAR(45), C_Cidade VARCHAR(45), C_Estado CHAR(2), C_CEP VARCHAR(45), C_CNPJ VARCHAR(45), C_Nome VARCHAR(100), C_Telefone VARCHAR(45), C_Email VARCHAR(45), C_Site VARCHAR(100), C_Endereco_Id INT, C_IdFornecedor INT)
+BEGIN
+	START TRANSACTION;
+		UPDATE Endereco SET Logradouro = C_Logradouro, Numero = C_Numero, Complemento = C_Complemento, Bairro = C_Bairro, Cidade = C_Cidade, Estado = C_Estado, CEP = C_CEP WHERE Id = C_Endereco_Id;
+        UPDATE Fornecedor SET CNPJ = C_CNPJ, Nome = C_Nome, Telefone = C_Telefone, Email = C_Email, Site = C_Site, Endereco_Id = C_Endereco_Id WHERE Id = C_IdFornecedor;
+	COMMIT;
+END //
+DELIMITER ;
+
+CALL altera_End ('Rua da Camelias', 100, '', 'Centro', 'Rio de Janeiro', 'RJ', '25100-000', '12.123.123/0001-00', 'Revendedora de Materiais', '(21)2345-6543', 'venda@revendedora.com', 'www.revendedora.com', 1, 1);
+
+-- -----------------------------------------------------
+-- Table Procedure Atualiza Estoque
+-- -----------------------------------------------------
+DELIMITER //
+  CREATE PROCEDURE SP_AtualizaEstoque (ES_Produto_CodigoBarra INT, ES_Quantidade INT, ES_ValorUnitario decimal(8,2))
 BEGIN
     DECLARE Contador INT(11);
 
