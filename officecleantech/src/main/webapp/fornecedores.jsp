@@ -1,6 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="br.com.officecleantech.controller.FornecedorController" %>
+<%@ page import="br.com.officecleantech.model.entidade.Fornecedor" %>
+<%@ page import="br.com.officecleantech.model.entidade.Endereco" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,8 +120,16 @@
         <button type="button" class="btn text-white" data-toggle="modal" data-target="#exampleModal"
           data-whatever="@mdo" style="background-color: #2678D1;" id="btnProduto">Cadastrar Fornecedor</button>
         <div class="search-container">
+        <%       	
+        	String nomeBuscar = request.getParameter("nomeBuscar");
+        	
+        	        
+        	if(nomeBuscar == null) {
+        		nomeBuscar = "";
+        	}
+        %>
           <form action="" method="post">
-            <input type="text" placeholder="Buscar fornecedor" name="search">
+            <input type="text" placeholder="Buscar fornecedor" name="nomeBuscar" value="<%= nomeBuscar %>">
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
@@ -134,43 +147,67 @@
               </button>
             </div>
             <div class="modal-body">
-              <form class="">
+              <form class="" method="post" action="FornecedorServlet">
                 <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
-                  <input type="text" class="form-control shadow-none" id="recipient-name"
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="nome"
                     placeholder="Nome do fornecedor">
-                  <input type="email" class="form-control shadow-none" id="recipient-name"
+                  <input type="email" class="form-control shadow-none" id="recipient-name" name="email"
                     placeholder="email@dominio.com">
                 </div>
 
                 <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
-                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="Telefone">
-                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="CNPJ">
-                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Site">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" name="telefone" placeholder="Telefone">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" name="cnpj" placeholder="CNPJ">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="site" placeholder="Site">
                 </div>
 
                 <div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
-                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="CEP">
-                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Bairro">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" name="cep" placeholder="CEP">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="bairro" placeholder="Bairro">
 
                 </div>
 
                 <div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
                   <select class="form-select shadow-none" aria-label="Default select example"
-                    style="padding: 0.375rem 0.75rem">
+                    style="padding: 0.375rem 0.75rem" name="estado">
                     <option selected>Estado</option>
-                    <option value="1">RJ</option>
-                    <option value="2">SP</option>
-                    <option value="3">MG</option>
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
                   </select>
-                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Cidade">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="cidade" placeholder="Cidade">
                 </div>
 
                 <div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
-                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Logradouro">
-                  <input type="number" class="form-control shadow-none" id="recipient-name" placeholder="N°">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="logradouro" placeholder="Logradouro">
+                  <input type="number" class="form-control shadow-none" id="recipient-name" name="numeroo" placeholder="N°">
                 </div>
                 <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
-                  <input type="text" class="form-control shadow-none" id="recipient-name" placeholder="Complemento">
+                  <input type="text" class="form-control shadow-none" id="recipient-name" name="complemento" placeholder="Complemento">
                 </div>
 
                 <div class="modal-footer">
@@ -191,15 +228,42 @@
           <thead style="box-shadow: 0px 4px 4px rgb(0 0 0 / 5%);
                   border-radius: 8px;">
             <tr>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
-              <th scope="col">Lorem</th>
+              <th scope="col">Id</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Site</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
+       <%
+       	FornecedorController controller = new FornecedorController();
+       	ArrayList<Fornecedor> lista = controller.listar(nomeBuscar);
+       	Endereco end = new Endereco();
+       
+       	for(Fornecedor f : lista) {
+       %>
             <tr>
+              <th scope="row"><%= f.getId() %></th>
+              <td><%= f.getNome() %></td>
+              <td><%= f.getTelefone() %></td>
+              <td><%= f.getEmail() %></td>
+              <td><%= f.getSite() %></td>
+              <td>
+                <div class="d-flex gap-2">
+                  <div class="text-primary" data-toggle="modal" data-target="#exampleModalAtt">
+                    <a href="InicioAlterarFornecedor?id=<%= f.getId() %>"><i class="fa-solid fa-pen-to-square"></i></a>
+                  </div>
+                  <div class="text-danger">
+                    <a href="ExcluirFornecedor?id=<%= f.getId() %>" onclick="return confirm('Deseja excluir esse registro?')"><i class="fa-solid fa-xmark"></i></a>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+       <% } %>
+           <!--   <tr>
               <th scope="row">Lorem</th>
               <td>Cell</td>
               <td>Cell</td>
@@ -215,24 +279,7 @@
                 </div>
               </td>
 
-            </tr>
-            <tr>
-              <th scope="row">Lorem</th>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>Cell</td>
-              <td>
-                <div class="d-flex gap-2">
-                  <div class="text-primary" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  </div>
-                  <div class="text-danger">
-                    </i><i class="fa-solid fa-xmark"></i>
-                  </div>
-                </div>
-              </td>
-
-            </tr>
+            </tr> -->
 
           </tbody>
         </table>
