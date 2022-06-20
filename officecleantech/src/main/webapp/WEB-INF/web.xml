@@ -99,4 +99,44 @@
     <servlet-name>ExcluirUsuarioServlet</servlet-name>
     <url-pattern>/ExcluirUsuarioServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FornecedorServlet</display-name>
+    <servlet-name>FornecedorServlet</servlet-name>
+    <servlet-class>br.com.officecleantech.view.FornecedorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FornecedorServlet</servlet-name>
+    <url-pattern>/FornecedorServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProdutoServlet</display-name>
+    <servlet-name>ProdutoServlet</servlet-name>
+    <servlet-class>br.com.officecleantech.view.ProdutoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProdutoServlet</servlet-name>
+    <url-pattern>/ProdutoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluirFornecedor</display-name>
+    <servlet-name>ExcluirFornecedor</servlet-name>
+    <servlet-class>br.com.officecleantech.view.ExcluirFornecedor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluirFornecedor</servlet-name>
+    <url-pattern>/ExcluirFornecedor</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InicioAlterarFornecedor</display-name>
+    <servlet-name>InicioAlterarFornecedor</servlet-name>
+    <servlet-class>br.com.officecleantech.view.InicioAlterarFornecedor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InicioAlterarFornecedor</servlet-name>
+    <url-pattern>/InicioAlterarFornecedor</url-pattern>
+  </servlet-mapping>
 </web-app>
