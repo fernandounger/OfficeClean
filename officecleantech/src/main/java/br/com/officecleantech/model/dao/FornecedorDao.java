@@ -41,7 +41,7 @@ public class FornecedorDao extends Conexao {
 	}
 	
 	public void alterar(Endereco end, Fornecedor f) {
-		String call = "CALL altera_End (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String call = "CALL altera_End (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select max(Endereco_Id) from Fornecedor), ?)";
 		
 		try {
 			CallableStatement cs = (CallableStatement) getConexao().prepareCall(call);
@@ -155,10 +155,9 @@ public class FornecedorDao extends Conexao {
 		return f;
 	}
 	
-	public void excluir(Long Id) {
-		String sql = "delete from Fornecedor Id = ? ";
-		Fornecedor f = new Fornecedor();
-		
+	public void excluir(Fornecedor f) {
+		String sql = "delete from Fornecedor where Id = ? ";
+				
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setLong(1, f.getId());

@@ -32,14 +32,12 @@ public class InicioAlterarFornecedor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Endereco end = new Endereco();
-		
-		String id = request.getParameter("id");
-		
 		long Id = 0;
+		long EnderecoId = 0;
 				
 				try {
-					Id = Long.parseLong(request.getParameter(id));
+					Id = Long.parseLong(request.getParameter("id"));
+					EnderecoId = Long.parseLong(request.getParameter("enderecoId"));
 				} catch (Exception e) {
 					System.out.println("Erro ao alterar Servlet");
 					e.printStackTrace();
@@ -47,9 +45,10 @@ public class InicioAlterarFornecedor extends HttpServlet {
 				
 				FornecedorController controller = new FornecedorController();
 				Fornecedor f = controller.buscar(Id);
+				f = controller.buscar(EnderecoId);
 				
 				request.setAttribute("Fornecedor", f);
-				request.setAttribute("Endereco", end);
+				
 				RequestDispatcher rd = request.getRequestDispatcher("alterar_fornecedores.jsp");
 				rd.forward(request, response);
 	}
