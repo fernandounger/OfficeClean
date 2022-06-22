@@ -3,13 +3,13 @@ package br.com.officecleantech.view;
 import java.io.IOException;
 
 import br.com.officecleantech.controller.FornecedorController;
-import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.annotation.WebServlet;
 
 /**
  * Servlet implementation class ExcluirFornecedor
@@ -44,7 +44,7 @@ public class ExcluirFornecedor extends HttpServlet {
 		f.setId(Id);
 		
 		FornecedorController controller = new FornecedorController();
-		controller.excluir(Id);
+		controller.excluir(f);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 		rd.forward(request, response);

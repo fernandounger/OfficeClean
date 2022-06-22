@@ -86,8 +86,8 @@
                 <div class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
                   <input type="text" class="form-control shadow-none" id="recipient-name" name="complemento" value="<%= enderecoAlterar.getComplemento() %>">
                   <input type="hidden" name="id" value="<%= fornecedorAlterar.getId() %>">
-                  <input type="hidden" name="endereco" value="<%= fornecedorAlterar.getEndereco() %>">
-                  <input type="hidden" name="endereco" value="<%= enderecoAlterar.getId() %>">
+                  <input type="hidden" name="enderecoId" value="<%= fornecedorAlterar.getEndereco() %>">
+                  <input type="hidden" name="enderecoId" value="<%= enderecoAlterar.getId() %>">
                 </div>
 
                 <div class="modal-footer">

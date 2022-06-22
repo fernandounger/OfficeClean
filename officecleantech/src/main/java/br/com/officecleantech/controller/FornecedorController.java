@@ -25,7 +25,7 @@ public class FornecedorController {
 		return dao.buscar(Id);
 	}
 	
-	public void excluir(Long Id) {
-		dao.excluir(Id);
+	public void excluir(Fornecedor f) {
+		dao.excluir(f);
 	}
 }
