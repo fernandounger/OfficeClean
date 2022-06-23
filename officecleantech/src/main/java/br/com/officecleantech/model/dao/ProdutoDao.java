@@ -67,12 +67,13 @@ public class ProdutoDao extends Conexao {
 			
 			ResultSet rs = ps.executeQuery();
 
-			Fornecedor f = null;
+			Fornecedor f;
 			Produto p;
 
 			while (rs.next()) {
 				f = new Fornecedor();
-				f.setNome("Fornecedor");
+				f.setId(rs.getLong("Id"));
+				f.setNome(rs.getString("Fornecedor"));
 				
 				p = new Produto();
 				p.setCodigoBarra(rs.getLong("CodigoBarra"));

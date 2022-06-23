@@ -232,6 +232,7 @@
 							ProdutoController controller = new ProdutoController();
 							ArrayList<Produto> lista = controller.listar(nomeBuscar);
 							
+							
 							Fornecedor f = new Fornecedor();
 							
 							for(Produto p : lista) {
@@ -240,7 +241,7 @@
 							<th scope="row"><%= p.getCodigoBarra() %></th>
 							<td><%= p.getNome() %></td>
 							<td><%= p.getCategoria() %></td>
-							<td><%= p.getFornecedor() %></td>
+							<td><%= p.getFornecedor().getId() %> - <%= p.getFornecedor().getNome() %></td>
 							<td><%= p.getDescricao() %></td>
 							<td><%= p.getEstoqueMaximo() %></td>
 							<td><%= p.getEstoqueMinimo() %></td>

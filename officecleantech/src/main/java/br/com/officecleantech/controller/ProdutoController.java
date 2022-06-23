@@ -3,7 +3,6 @@ package br.com.officecleantech.controller;
 import java.util.ArrayList;
 
 import br.com.officecleantech.model.dao.ProdutoDao;
-import br.com.officecleantech.model.entidade.Fornecedor;
 import br.com.officecleantech.model.entidade.Produto;
 
 public class ProdutoController {
