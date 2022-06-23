@@ -15,9 +15,9 @@ public class UsuarioController {
 
 	}
 
-	public Usuario logarUsuario(/* String name, */ String login, String password) {
+	public Usuario logarUsuario( String login, String password) {
 
-		return dao.logar(/* name, */ login, password);
+		return dao.logar( login, password);
 	}
 
 	
@@ -30,7 +30,7 @@ public class UsuarioController {
 		return dao.pesquisar(id);
 	}
 
-	public /*void*/String alterarUsuario(Usuario u) {
+	public String alterarUsuario(Usuario u) {
 		return dao.alterar(u);
 	}
 

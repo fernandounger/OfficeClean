@@ -59,12 +59,7 @@
 				</a>
 			</div>
 			<ul class="list-unstyled components">
-				<li class="active">
-					<div class="icons-menu">
-						<i class="fa-solid fa-house"></i> <a href="#homeSubmenu"
-							data-toggle="collapse" aria-expanded="false">Dashboard</a>
-					</div>
-				</li>
+
 				<li>
 					<div class="icons-menu">
 						<i class="fa-solid fa-box-archive"></i> <a href="#">Produtos</a>
@@ -75,18 +70,18 @@
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-up"></i> <a href="#">Entrada</a>
+								<i class="fa-solid fa-arrow-up"></i> <a href="relatorio_entrada.jsp">Entrada</a>
 							</div>
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a href="#">Saída</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="relatorio_saida.jsp">Saída</a>
 							</div>
 						</li>
 					</ul></li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-users"></i> <a href="#">Fornecedores</a>
+						<i class="fa-solid fa-users"></i> <a href="fornecedores.jsp">Fornecedores</a>
 					</div>
 				</li>
 				<li>

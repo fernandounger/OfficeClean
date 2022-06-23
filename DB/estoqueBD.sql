@@ -63,7 +63,7 @@ from Fornecedor f
 inner join Endereco end
 on f.Endereco_Id = end.Id;
 
-delete f.*, end.* from Fornecedor as f, Endereco as end where f.Endereco_Id = 3 AND e.Id = 3;
+/*delete f.*, end.* from Fornecedor as f, Endereco as end where f.Endereco_Id = 3 AND e.Id = 3;*/
 
 select * from listagemFornecedor order by Nome;
 

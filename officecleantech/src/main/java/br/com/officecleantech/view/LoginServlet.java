@@ -41,16 +41,16 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		String name = request.getParameter("Nome");
+
 		String login = request.getParameter("Login");
 		String password = request.getParameter("Senha");
 
-//		System.out.println(/* name+ " - "+*/login + " - " + password);
+
 
 		UsuarioController controller = new UsuarioController();
-//		Usuario u = uc.logarUsuario(/*name,*/ login, password);
+
 		Usuario u = new Usuario();
-		u = controller.logarUsuario(/*name,*/ login, password);
+		u = controller.logarUsuario( login, password);
 		String destino = "";
 		if (u != null) {
 			HttpSession sessao = request.getSession();
@@ -58,8 +58,7 @@ public class LoginServlet extends HttpServlet {
 			sessao.setAttribute("usuarioLogado", u);
 			destino = "usuarios.jsp";
 		} else {
-//			request.setAttribute("Error", "Acesso Negado");
-			request.setAttribute("Error", "");
+
 			destino = "login.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(destino);
