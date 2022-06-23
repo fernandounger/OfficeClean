@@ -139,4 +139,24 @@
     <servlet-name>InicioAlterarFornecedor</servlet-name>
     <url-pattern>/InicioAlterarFornecedor</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluirProduto</display-name>
+    <servlet-name>ExcluirProduto</servlet-name>
+    <servlet-class>br.com.officecleantech.view.ExcluirProduto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluirProduto</servlet-name>
+    <url-pattern>/ExcluirProduto</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>InicioAlterarProduto</display-name>
+    <servlet-name>InicioAlterarProduto</servlet-name>
+    <servlet-class>br.com.officecleantech.view.InicioAlterarProduto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InicioAlterarProduto</servlet-name>
+    <url-pattern>/InicioAlterarProduto</url-pattern>
+  </servlet-mapping>
 </web-app>

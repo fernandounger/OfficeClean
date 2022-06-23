@@ -1,5 +1,10 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario"%>
+<%@ page import="br.com.officecleantech.controller.ProdutoController" %>
+<%@ page import="br.com.officecleantech.controller.FornecedorController" %>
+<%@ page import="br.com.officecleantech.model.entidade.Fornecedor" %>
+<%@ page import="br.com.officecleantech.model.entidade.Produto" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,8 +122,15 @@
 					style="background-color: #2678D1;" id="btnProduto">Adicionar
 					Produto</button>
 				<div class="search-container">
+					<%
+						String nomeBuscar = request.getParameter("nomeBuscar");
+					
+						if(nomeBuscar == null) {
+							nomeBuscar = "";
+						}
+					%>
 					<form action="" method="post">
-						<input type="text" placeholder="Buscar produto" name="search">
+						<input type="text" placeholder="Buscar produto" name="nomeBuscar" value="<%= nomeBuscar %>">
 						<button type="submit">
 							<i class="fa fa-search"></i>
 						</button>
@@ -139,48 +151,54 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<form class="">
+							<form class="" method="post" action="ProdutoServlet">
 								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" placeholder="Código do produto"> <input
+										id="recipient-name" name="codigoBarra" placeholder="Código do produto"> <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Nome do produto">
+										id="recipient-name" name="nome" placeholder="Nome do produto">
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
-									<input type="number" class="form-control shadow-none"
-										id="recipient-name" placeholder="Valor Unidade"> <select
+									<!--  <input type="number" class="form-control shadow-none"
+										id="recipient-name" placeholder="Valor Unidade">--> <select
 										class="form-select shadow-none"
 										aria-label="Default select example"
-										style="padding: 0.375rem 0.75rem">
+										style="padding: 0.375rem 0.75rem" name="catgoria">
 										<option selected>Categoria</option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
+										<option value="Equipamentos de Limpeza">Equipamentos de Limpeza</option>
+										<option value="Acessórios de Limpeza">Acessórios de Limpeza</option>
+										<option value="Produtos Químicos de Limpeza">Produtos Químicos de Limpeza</option>
+										<option value="Papéis">Papéis</option>
 									</select>
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
-									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Estoque Atual"> <select
+									<!-- <input type="text" class="form-control shadow-none"
+										id="recipient-name" placeholder="Estoque Atual"> --> <select
 										class="form-select shadow-none"
 										aria-label="Default select example"
-										style="padding: 0.375rem 0.75rem">
+										style="padding: 0.375rem 0.75rem" name="fornecedor">
 										<option selected>Fornecedor</option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
+										<%
+											FornecedorController fcontroller = new FornecedorController();
+											ArrayList<Fornecedor> flista = fcontroller.listar(nomeBuscar);
+											
+											for(Fornecedor f : flista) {
+										%>
+										<option value="<%= f.getId() %>"><%= f.getId() %> - <%= f.getNome() %></option>
+										<% } %>
 									</select>
 								</div>
 								<div class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Descrição"> <input
+										id="recipient-name" name="descricao" placeholder="Descrição"> <!-- <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Localização">
+										id="recipient-name" placeholder="Localização">-->
 								</div>
 								<div class="form-group d-flex gap-3 mb-2 flex-row">
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade Máxima"> <input
+										id="recipient-name" name="estoqueMaximo" placeholder="Quantidade Máxima"> <input
 										type="text" class="form-control shadow-none"
-										id="recipient-name" placeholder="Quantidade Mínima">
+										id="recipient-name" name="estoqueMinimo" placeholder="Quantidade Mínima">
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn text-white"
@@ -199,32 +217,47 @@
 					<thead
 						style="box-shadow: 0px 4px 4px rgb(0 0 0/ 5%); border-radius: 8px;">
 						<tr>
-							<th scope="col">Cod</th>
+							<th scope="col">Código</th>
 							<th scope="col">Nome</th>
 							<th scope="col">Categoria</th>
 							<th scope="col">Fornecedor</th>
+							<th scope="col">Descrição</th>
+							<th scope="col">Estoque Máximo</th>
+							<th scope="col">Estoque Mínimo</th>
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
+						<%
+							ProdutoController controller = new ProdutoController();
+							ArrayList<Produto> lista = controller.listar(nomeBuscar);
+							
+							Fornecedor f = new Fornecedor();
+							
+							for(Produto p : lista) {
+						%>
 						<tr>
-							<th scope="row">151412</th>
-							<td>Cell</td>
-							<td>Cell</td>
-							<td>Cell</td>
+							<th scope="row"><%= p.getCodigoBarra() %></th>
+							<td><%= p.getNome() %></td>
+							<td><%= p.getCategoria() %></td>
+							<td><%= p.getFornecedor() %></td>
+							<td><%= p.getDescricao() %></td>
+							<td><%= p.getEstoqueMaximo() %></td>
+							<td><%= p.getEstoqueMinimo() %></td>
 							<td>
 								<div class="d-flex gap-2">
 									<div class="text-primary" data-toggle="modal"
 										data-target="#exampleModal">
-										<i class="fa-solid fa-pen-to-square"></i>
+										<a href="InicioAlterarProduto?codigoBarra=<%= p.getCodigoBarra() %>"><i class="fa-solid fa-pen-to-square"></i></a>
 									</div>
 									<div class="text-danger">
-										</i><i class="fa-solid fa-xmark"></i>
+										<a href="ExcluirProduto?codigoBarra=<%= p.getCodigoBarra() %>" onclick="return confirm('Deseja excluir esse registro?')"><i class="fa-solid fa-xmark"></i>
 									</div>
 								</div>
 							</td>
 						</tr>
-						<tr>
+						<% } %>
+						<!--  <tr>
 							<th scope="row">679432</th>
 							<td>Cell</td>
 							<td>Cell</td>
@@ -240,7 +273,7 @@
 									</div>
 								</div>
 							</td>
-						</tr>
+						</tr>-->
 					</tbody>
 				</table>
 			</div>
