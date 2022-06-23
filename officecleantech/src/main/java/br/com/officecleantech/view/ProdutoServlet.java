@@ -2,6 +2,7 @@ package br.com.officecleantech.view;
 
 import java.io.IOException;
 
+import br.com.officecleantech.controller.FornecedorController;
 import br.com.officecleantech.controller.ProdutoController;
 import br.com.officecleantech.model.entidade.Fornecedor;
 import br.com.officecleantech.model.entidade.Produto;
@@ -60,8 +61,10 @@ public class ProdutoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		FornecedorController fcontroller = new FornecedorController();
 		Fornecedor f = new Fornecedor();
 		f.setId(Fornecedor);
+		f.setNome(nome);
 		
 		Produto p = new Produto();
 		p.setCodigoBarra(CodigoBarra);
@@ -74,6 +77,7 @@ public class ProdutoServlet extends HttpServlet {
 		
 		ProdutoController controller = new ProdutoController();
 		controller.cadastrar(p);
+		fcontroller.listar(fornecedor);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("produtos.jsp");
 		rd.forward(request, response);
