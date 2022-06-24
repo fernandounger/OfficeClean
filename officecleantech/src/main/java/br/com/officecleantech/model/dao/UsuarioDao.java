@@ -21,18 +21,18 @@ public class UsuarioDao extends Conexao {
 			ps.setString(3, u.getSenha());
 			ps.setString(4, u.getNivelAcesso());
 			ps.execute();
-//			mensagem = "sucesso no cadastro";
+
 		} catch (SQLException e) {
-//			mensagem = "falha no cadastro";
-//			e.printStackTrace();
+
+
 		} finally {
-//			System.out.println(mensagem);
+
 			fecharConexao();
 		}
 		return mensagem;
 	}
 
-	public Usuario logar(/* String name, */ String login, String password) {
+	public Usuario logar( String login, String password) {
 		Usuario u = null;
 
 		String mensagem = "";
@@ -40,34 +40,34 @@ public class UsuarioDao extends Conexao {
 		try {
 			String sql = "SELECT * FROM Usuario WHERE Login = ? AND Senha = ? ";
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			/* ps.setString(1, name); */
+		
 			ps.setString(1, login);
 			ps.setString(2, password);
 
 			ResultSet rs = ps.executeQuery();
 
-//			System.out.println(sql);
+
 
 			if (rs.next()) {
 				u = new Usuario();
 				u.setId(rs.getLong(1));
 				u.setNome(rs.getString(2));
 				u.setLogin(rs.getString(3));
-				// u.setSenha(rs.getString("Senha"));
 
-//				mensagem = "sucesso na busca";
+
+
 			} else {
-//				mensagem = "erro na busca";
+
 			}
 
 		} catch (SQLException e) {
 
-//			e.printStackTrace();
+
 		} finally {
 
 			fecharConexao();
 		}
-		return u /* mensagem */;
+		return u ;
 
 	}
 
@@ -93,10 +93,10 @@ public class UsuarioDao extends Conexao {
 				lista.add(u);
 			}
 
-//			System.out.println("Sucesso na Listagem");
+
 		} catch (SQLException e) {
-//			System.out.println("Falha na Listagem");
-//			e.printStackTrace();
+
+
 
 		} finally {
 			fecharConexao();
@@ -122,12 +122,12 @@ public class UsuarioDao extends Conexao {
 				user.setSenha(rs.getString("Senha"));
 				user.setNivelAcesso(rs.getString("NivelAcesso"));
 
-//				System.out.print(user.getNome() + "\n");
+
 			}
 
 		} catch (SQLException e) {
-//			System.out.println("falha na pesquisa");
-//			e.printStackTrace();
+
+
 			return null;
 		} finally {
 			fecharConexao();
@@ -136,7 +136,7 @@ public class UsuarioDao extends Conexao {
 		return user;
 	}
 
-	public /* void */ String alterar(Usuario c) {
+	public  String alterar(Usuario c) {
 		String sql = "update Usuario set" + " Nome = ?, " + "Login = ?, " + " Senha = ?, " + "NivelAcesso = ?"
 				+ " where Id = ?";
 
@@ -150,11 +150,11 @@ public class UsuarioDao extends Conexao {
 			ps.setLong(5, c.getId());
 			ps.execute();
 
-//			mensagem = "sucesso";
+
 		} catch (SQLException e) {
-//			System.out.println("Erro no Update");
-//			mensagem = "falha";
-//			e.printStackTrace();
+
+
+
 		} finally {
 			fecharConexao();
 		}
@@ -167,14 +167,14 @@ public class UsuarioDao extends Conexao {
 		String mensagem = "";
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, /* i */u.getId());
+			ps.setLong(1, u.getId());
 
 			ps.execute();
-//			mensagem = "sucesso na exclusao";
+
 		} catch (SQLException e) {
-//			System.out.println("Erro na exclusão");
-//			mensagem = "falha na exclusao";
-//			e.printStackTrace();
+
+
+
 		} finally {
 			fecharConexao();
 		}

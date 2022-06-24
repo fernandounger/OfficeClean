@@ -47,7 +47,7 @@ public class ExecutaAlterarUsuarioServlet extends HttpServlet {
 		String accessLevel = request.getParameter("accessLevel");
 		String strId = request.getParameter("Id");
 
-//		System.out.println(name);
+
 
 		long id = 0;
 		try {

@@ -47,8 +47,6 @@ public class InicioAlterarUsuarioServlet extends HttpServlet {
 		UsuarioController controller = new UsuarioController();
 		Usuario u2 = controller.pesquisarUsuario(get);
 
-//		System.out.println(u2.getNome());
-
 		request.setAttribute("redirecionador2", u2);
 
 		RequestDispatcher rd = request.getRequestDispatcher("atualizar_usuarios.jsp");
