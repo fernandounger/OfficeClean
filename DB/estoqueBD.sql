@@ -272,3 +272,5 @@ BEGIN
       CALL SP_AtualizaEstoque (old.Produto_CodigoBarra, old.Quantidade, old.ValorUnitario);
 END //
 DELIMITER ;
+
+
