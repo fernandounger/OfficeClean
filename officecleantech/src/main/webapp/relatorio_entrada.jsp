@@ -65,7 +65,7 @@
 					</div>
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse"
-					aria-expanded="false" class="dropdown-toggle ">Relatórios</a>
+					aria-expanded="false" class="dropdown-toggle ">Relatï¿½rios</a>
 
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
@@ -78,7 +78,7 @@
 						<li>
 							<div class="icons-menu">
 								<i class="fa-solid fa-arrow-down"></i> <a
-									href="relatorio_saida.jsp">Saída</a>
+									href="relatorio_saida.jsp">Saï¿½da</a>
 
 							</div>
 						</li>
@@ -91,7 +91,7 @@
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuários</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuï¿½rios</a>
 					</div>
 				</li>
 				<li id="li-logoff">
@@ -128,6 +128,10 @@
 						</button>
 					</form>
 				</div>
+				<button type="button" class="btn text-white" data-toggle="modal"
+					data-target="#exampleModal" data-whatever="@mdo"
+					style="background-color: #2678D1;" id="btnProduto"><i class="fa-solid fa-file"></i> GERAR RELATÃ“RIO
+					</button>
 			</header>
 
 			<!-- Tabela de Entrada -->

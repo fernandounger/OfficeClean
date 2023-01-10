@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
-    text-decoration: none!important;
+    text-decoration: none !important;
     border: none;
 }
 
@@ -11,15 +11,17 @@ body {
     max-width: 1440px;
     margin: 0 auto;
 }
+
 /* Modal de Produto */
-.form-group input , .form-group select{
+.form-group input,
+.form-group select {
     border: none;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2)!important;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 #content .navbar {
     padding: 15px 10px;
-    background: #fff;
+    background: #fff !important;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -36,11 +38,12 @@ body {
 /*
     BARRA DE PESQUISA
 */
-.search-container form{
+.search-container form {
     display: flex;
     align-items: center;
 
 }
+
 .search-container form input[type=text] {
     padding: 6px;
     font-size: 1rem;
@@ -67,6 +70,7 @@ body {
 .search-container form button:hover {
     background: #1e65b2;
 }
+
 /*TABELA*/
 thead {
     position: sticky;
@@ -83,6 +87,7 @@ thead {
 .table-wrapper-scroll-y {
     display: block;
 }
+
 .line {
     width: 100%;
     height: 1px;
@@ -138,7 +143,7 @@ thead {
     color: #fff;
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li:hover a {
     color: #fff;
 }
 
@@ -159,22 +164,28 @@ a[data-toggle="collapse"] {
     right: 20px;
     transform: translateY(-50%);
 }
+
 .icons-menu {
     display: flex;
     align-items: center;
     padding-left: 20px;
 }
-.icons-menu i{
+
+.icons-menu i {
     font-size: 1.2rem;
 }
+
 .icons-menu a {
     font-weight: 700 !important;
     color: #323232eb;
 }
-#sidebar ul #li-logoff i , #sidebar ul #li-logoff a {
+
+#sidebar ul #li-logoff i,
+#sidebar ul #li-logoff a {
     color: rgb(180, 39, 39);
 }
-#sidebar ul #li-logoff:hover{
+
+#sidebar ul #li-logoff:hover {
     background-color: transparent;
 }
 
@@ -218,22 +229,27 @@ a[data-toggle="collapse"] {
         gap: 0.3rem !important;
     }
 }
-@media (max-width: 510px){
-    #header__btn{
+
+@media (max-width: 510px) {
+    #header__btn {
         flex-direction: column;
         align-items: none;
     }
-    #header__btn #btnProduto{
+
+    #header__btn #btnProduto {
         padding: 15px;
         width: 100%;
     }
-    .search-container{
+
+    .search-container {
         width: 100%;
     }
-    .search-container form{
+
+    .search-container form {
         justify-content: space-between;
     }
-    .search-container form input{
+
+    .search-container form input {
         width: 100%;
     }
 }
