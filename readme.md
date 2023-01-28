@@ -41,20 +41,28 @@
           <b>Fernando Unger</b>
         </sub>
     </td>
+     <td align="center">
+      <a href="https://github.com/AlexSenac">
+        <img src="https://avatars.githubusercontent.com/AlexSenac" width="100px;" alt="Foto do Alexandre Alves no Github"/><br>
+          </a>
+        <sub>
+          <b>Alexandre Alves</b>
+        </sub>
+    </td>
     <td align="center">
-      <a href="https://github.com/Isaque-Fernandes/">
-        <img src="https://avatars.githubusercontent.com/Isaque-Fernandes" width="100px;" alt="Foto do Isaque no Github"/><br>
+      <a href="https://github.com/Pedycreed">
+        <img src="https://avatars.githubusercontent.com/Pedycreed" width="100px;" alt="Foto do Jhonatan Salgueiro no Github"/><br>
              </a>
         <sub>
-          <b>Isaque Fernandes</b>
+          <b>Jhonatan Salgueiro</b>
         </sub>
     </td>
    <td align="center">
-      <a href="https://github.com/kmitiko/">
-       <img src="https://avatars.githubusercontent.com/kmitiko" width="100px;" alt="Foto da Kátia no Github"/><br>
+      <a href="https://github.com/uzal30">
+       <img src="https://avatars.githubusercontent.com/uzal30" width="100px;" alt="Foto do Diego Uzal no Github"/><br>
         </a>
         <sub>
-          <b>Kátia Mitiko</b>
+          <b>Diego Uzal</b>
         </sub>
     </td>
   </tr>
