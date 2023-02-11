@@ -13,13 +13,12 @@ public class UsuarioDao extends Conexao {
 		String mensagem = "";
 
 		try {
-			String sql = "INSERT INTO Usuario (Nome, Login, Senha, NivelAcesso) VALUES ( ?, ?, ?, ?)";
+			String sql = "INSERT INTO Usuario (Nome, Login, Senha) VALUES ( ?, ?, ?)";
 
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setString(1, u.getNome());
 			ps.setString(2, u.getLogin());
 			ps.setString(3, u.getSenha());
-			ps.setString(4, u.getNivelAcesso());
 			ps.execute();
 
 		} catch (SQLException e) {
@@ -88,7 +87,6 @@ public class UsuarioDao extends Conexao {
 				u.setNome(rs.getString("Nome"));
 				u.setLogin(rs.getString("Login"));
 				u.setSenha(rs.getString("Senha"));
-				u.setNivelAcesso(rs.getString("NivelAcesso"));
 
 				lista.add(u);
 			}
@@ -120,7 +118,6 @@ public class UsuarioDao extends Conexao {
 				user.setNome(rs.getString("Nome"));
 				user.setLogin(rs.getString("Login"));
 				user.setSenha(rs.getString("Senha"));
-				user.setNivelAcesso(rs.getString("NivelAcesso"));
 
 
 			}
@@ -137,8 +134,7 @@ public class UsuarioDao extends Conexao {
 	}
 
 	public  String alterar(Usuario c) {
-		String sql = "update Usuario set" + " Nome = ?, " + "Login = ?, " + " Senha = ?, " + "NivelAcesso = ?"
-				+ " where Id = ?";
+		String sql = "update Usuario set" + " Nome = ?, " + "Login = ?, " + " Senha = ?, " + " where Id = ?";
 
 		String mensagem = "";
 		try {
@@ -146,8 +142,7 @@ public class UsuarioDao extends Conexao {
 			ps.setString(1, c.getNome());
 			ps.setString(2, c.getLogin());
 			ps.setString(3, c.getSenha());
-			ps.setString(4, c.getNivelAcesso());
-			ps.setLong(5, c.getId());
+			ps.setLong(4, c.getId());
 			ps.execute();
 
 

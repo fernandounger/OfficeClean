@@ -5,13 +5,11 @@ public class Usuario {
 	private String Nome;
 	private String Login;
 	private String Senha;
-	private String NivelAcesso;
 
 	public Usuario() {
 		this.Nome = null;
 		this.Login = null;
 		this.Senha = null;
-		this.NivelAcesso = "";
 	}
 	
 	public long getId() {
@@ -44,14 +42,6 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		Senha = senha;
-	}
-	
-	public String getNivelAcesso() {
-		return NivelAcesso;
-	}
-	
-	public void setNivelAcesso(String nivelAcesso) {
-		NivelAcesso = nivelAcesso;
 	}
 
 }

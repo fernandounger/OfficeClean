@@ -44,7 +44,6 @@ public class CadastrarUsuarioServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		String accessLevel = request.getParameter("accessLevel");
 
 //		System.out.println(name);
 
@@ -52,7 +51,6 @@ public class CadastrarUsuarioServlet extends HttpServlet {
 		user.setNome(name);
 		user.setLogin(login);
 		user.setSenha(password);
-		user.setNivelAcesso(accessLevel);
 
 		UsuarioController controller = new UsuarioController();
 		controller.cadastrarUsuario(user);
