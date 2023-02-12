@@ -30,8 +30,8 @@ public class FornecedorDao extends Conexao {
 			cs.setString("C_Telefone", f.getTelefone());
 			cs.setString("C_Email", f.getEmail());
 			cs.setString("C_Site", f.getSite());
-			cs.executeUpdate();
 			
+			cs.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();

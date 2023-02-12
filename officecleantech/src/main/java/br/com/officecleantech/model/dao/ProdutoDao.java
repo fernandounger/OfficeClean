@@ -11,7 +11,6 @@ import br.com.officecleantech.model.entidade.Produto;
 public class ProdutoDao extends Conexao {
 
 	public void cadastrar (Produto p) {
-		
 		String sql = "insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao) values (?, ?, ?, ?, ?, ?)";
 		
 		try {
@@ -24,7 +23,7 @@ public class ProdutoDao extends Conexao {
 			ps.setInt(5, p.getEstoqueMaximo());
 			ps.setString(6, p.getDescricao());
 			
-			ps.executeUpdate();
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();
@@ -48,7 +47,7 @@ public class ProdutoDao extends Conexao {
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Erro na atualiza��o");
+			System.out.println("Erro na atualização");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
