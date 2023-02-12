@@ -38,7 +38,6 @@ public class ProdutoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String codigoBarra = request.getParameter("codigoBarra");
 		String nome = request.getParameter("nome");
 		String categoria = request.getParameter("categoria");
 		String fornecedor = request.getParameter("fornecedor");
@@ -46,13 +45,11 @@ public class ProdutoServlet extends HttpServlet {
 		String estoqueMaximo = request.getParameter("estoqueMaximo");
 		String estoqueMinimo = request.getParameter("estoqueMinimo");
 		
-		long CodigoBarra = 0;
 		int EstoqueMaximo = 0;
 		int EstoqueMinimo = 0;
 		long Fornecedor = 0;
 		
 		try {
-			CodigoBarra = Long.parseLong(codigoBarra);
 			EstoqueMaximo = Integer.parseInt(estoqueMaximo);
 			EstoqueMinimo = Integer.parseInt(estoqueMinimo);
 			Fornecedor = Long.parseLong(fornecedor);
@@ -67,7 +64,6 @@ public class ProdutoServlet extends HttpServlet {
 		f.setNome(nome);
 		
 		Produto p = new Produto();
-		p.setCodigoBarra(CodigoBarra);
 		p.setNome(nome);
 		p.setCategoria(categoria);
 		p.setFornecedor(f);

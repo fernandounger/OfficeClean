@@ -28,18 +28,18 @@ public class ExcluirProduto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String codigoBarra = request.getParameter("codigoBarra");
+		String id = request.getParameter("id");
 		
-		long CodigoBarra = 0;
+		long Id = 0;
 		try {
-			CodigoBarra = Long.parseLong(codigoBarra);
+			Id = Long.parseLong(id);
 		} catch (Exception e) {
 			System.out.println("Erro na conversao");
 			e.printStackTrace();
 		}
 		
 		Produto p = new Produto();
-		p.setCodigoBarra(CodigoBarra);
+		p.setId(Id);
 		
 		ProdutoController controller = new ProdutoController();
 		controller.excluir(p);

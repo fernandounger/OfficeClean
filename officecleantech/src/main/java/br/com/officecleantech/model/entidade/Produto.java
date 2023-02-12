@@ -2,7 +2,7 @@ package br.com.officecleantech.model.entidade;
 
 public class Produto {
 
-	private long codigoBarra;
+	private long id;
 	private String nome;
 	private String categoria;
 	private int estoqueMinimo;
@@ -11,12 +11,12 @@ public class Produto {
 	
 	private Fornecedor fornecedor;
 
-	public long getCodigoBarra() {
-		return codigoBarra;
+	public long getId() {
+		return id;
 	}
 
-	public void setCodigoBarra(long codigoBarra) {
-		this.codigoBarra = codigoBarra;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {

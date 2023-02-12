@@ -44,7 +44,6 @@ public class ExecutaAlterarUsuarioServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		String accessLevel = request.getParameter("accessLevel");
 		String strId = request.getParameter("Id");
 
 
@@ -60,7 +59,6 @@ public class ExecutaAlterarUsuarioServlet extends HttpServlet {
 		user.setNome(name);
 		user.setLogin(login);
 		user.setSenha(password);
-		user.setNivelAcesso(accessLevel);
 
 		UsuarioController controller = new UsuarioController();
 		controller.alterarUsuario(user);

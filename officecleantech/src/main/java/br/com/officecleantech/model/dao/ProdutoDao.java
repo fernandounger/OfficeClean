@@ -11,20 +11,19 @@ import br.com.officecleantech.model.entidade.Produto;
 public class ProdutoDao extends Conexao {
 
 	public void cadastrar (Produto p) {
-		String sql = "insert into Produto (CodigoBarra, Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao) values (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Produto (Nome, Categoria, Fornecedor_Id, EstoqueMinimo, EstoqueMaximo, Descricao) values (?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 					
-			ps.setLong(1, p.getCodigoBarra());
-			ps.setString(2, p.getNome());
-			ps.setString(3, p.getCategoria());
-			ps.setLong(4, p.getFornecedor().getId());
-			ps.setInt(5, p.getEstoqueMinimo());
-			ps.setInt(6, p.getEstoqueMaximo());
-			ps.setString(7, p.getDescricao());
+			ps.setString(1, p.getNome());
+			ps.setString(2, p.getCategoria());
+			ps.setLong(3, p.getFornecedor().getId());
+			ps.setInt(4, p.getEstoqueMinimo());
+			ps.setInt(5, p.getEstoqueMaximo());
+			ps.setString(6, p.getDescricao());
 			
-			ps.executeUpdate();
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();
@@ -34,22 +33,21 @@ public class ProdutoDao extends Conexao {
 	}
 	
 	public void alterar(Produto p) {
-		String sql = "update Produto set CodigoBarra = ?, Nome = ?, Categoria = ?, Fornecedor_Id = (select max(Id) from Fornecedor), EstoqueMinimo = ?, EstoqueMaximo = ?, Descricao = ? where CodigoBarra = ?";
+		String sql = "update Produto set Nome = ?, Categoria = ?, Fornecedor_Id = (select max(Id) from Fornecedor), EstoqueMinimo = ?, EstoqueMaximo = ?, Descricao = ? where CodigoBarra = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			
-			ps.setLong(1, p.getCodigoBarra());
-			ps.setString(2, p.getNome());
-			ps.setString(3, p.getCategoria());
-			ps.setLong(4, p.getFornecedor().getId());
-			ps.setInt(5, p.getEstoqueMinimo());
-			ps.setInt(6, p.getEstoqueMaximo());
-			ps.setString(7, p.getDescricao());
+			ps.setString(1, p.getNome());
+			ps.setString(2, p.getCategoria());
+			ps.setLong(3, p.getFornecedor().getId());
+			ps.setInt(4, p.getEstoqueMinimo());
+			ps.setInt(5, p.getEstoqueMaximo());
+			ps.setString(6, p.getDescricao());
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Erro na atualização");
+			System.out.println("Erro na atualizaÃ§Ã£o");
 			e.printStackTrace();
 		} finally {
 			fecharConexao();
@@ -76,7 +74,7 @@ public class ProdutoDao extends Conexao {
 				f.setNome(rs.getString("Fornecedor"));
 				
 				p = new Produto();
-				p.setCodigoBarra(rs.getLong("CodigoBarra"));
+				p.setId(rs.getLong("Id"));
 				p.setNome(rs.getString("Nome"));
 				p.setCategoria(rs.getString("Categoria"));
 				p.setFornecedor(f);
@@ -114,7 +112,7 @@ public class ProdutoDao extends Conexao {
 				f.setNome("Fornecedor");
 				
 				p = new Produto();
-				p.setCodigoBarra(rs.getLong("CodigoBarra"));
+				p.setId(rs.getLong("Id"));
 				p.setNome(rs.getString("Nome"));
 				p.setCategoria(rs.getString("Categoria"));
 				p.setFornecedor(f);
@@ -136,7 +134,7 @@ public class ProdutoDao extends Conexao {
 		
 		try {
 			PreparedStatement ps = getConexao().prepareCall(sql);		
-			ps.setLong(1, p.getCodigoBarra());
+			ps.setLong(1, p.getId());
 			
 			ps.executeUpdate();
 		} catch (SQLException e) {
