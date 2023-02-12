@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.officecleantech.model.entidade.ControleEntrada;
-import br.com.officecleantech.model.entidade.Estoque;
 import br.com.officecleantech.model.entidade.Fornecedor;
 import br.com.officecleantech.model.entidade.Produto;
 
@@ -32,18 +31,17 @@ public class ControleEntradaDao extends Conexao {
 		}
 	}
 	
-	public void alterar (Estoque es) {
-		String sql = "update Estoque set Produto_Id = ?, Fornecedor_Id = ?, Quantidade = ?, ValorUnitario = ?, LocalizacaoEstoque = ? where Id = ?";
+	public void alterar (ControleEntrada ce) {
+		String sql = "update ControleEntrada set Produto_Id = ?, Fornecedor_Id = ?, Quantidade = ?, ValorUnitario = ? where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			
-			ps.setLong(1, es.getProduto().getId());
-			ps.setLong(2, es.getFornecedor().getId());
-			ps.setInt(3, es.getQuantidade());
-			ps.setDouble(4, es.getValorUnitario());
-			ps.setString(5, es.getLocalizacaoEstoque());
-			ps.setLong(6, es.getId());
+			ps.setLong(1, ce.getProduto().getId());
+			ps.setLong(2, ce.getFornecedor().getId());
+			ps.setInt(3, ce.getQuantidade());
+			ps.setDouble(4, ce.getValorUnitario());
+			ps.setLong(5, ce.getId());
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -54,33 +52,33 @@ public class ControleEntradaDao extends Conexao {
 		}
 	}
 	
-	public ArrayList<Estoque> listar(String LocalizacaoEstoqueBusca) {
-		ArrayList<Estoque> lista = new ArrayList<Estoque>();
+	public ArrayList<ControleEntrada> listar(String ValorUnitarioBusca) {
+		ArrayList<ControleEntrada> lista = new ArrayList<ControleEntrada>();
 		
-		String sql = "select * from Estoque where LocalizacaoEstoque like ? order by LocalizacaoEstoque";
+		String sql = "select * from ControleEntrada where ValorUnitario like ? order by ValorUnitario";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setString(1, "%" + LocalizacaoEstoqueBusca + "%");
+			ps.setString(1, "%" + ValorUnitarioBusca + "%");
 			
 			ResultSet rs = ps.executeQuery();
-			Estoque es;
+			ControleEntrada ce;
 			
 			while (rs.next()) {
 				Produto p = new Produto();
 				Fornecedor f = new Fornecedor();
 				
-				es = new Estoque();
-				es.setId(rs.getLong("Id"));
-				es.setProduto(p);
+				ce = new ControleEntrada();
+				ce.setId(rs.getLong("Id"));
+				ce.setDataEntrada(rs.getDate("DataEntrada"));
+				ce.setProduto(p);
 				p.setId(rs.getLong("Id"));
-				es.setFornecedor(f);
+				ce.setFornecedor(f);
 				f.setId(rs.getLong("Id"));
-				es.setQuantidade(rs.getInt("Quantidade"));
-				es.setValorUnitario(rs.getDouble("ValorUnitario"));
-				es.setLocalizacaoEstoque(rs.getString("LocalizacaoEstoque"));
+				ce.setQuantidade(rs.getInt("Quantidade"));
+				ce.setValorUnitario(rs.getDouble("ValorUnitario"));
 				
-				lista.add(es);
+				lista.add(ce);
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro na consulta");
@@ -91,10 +89,10 @@ public class ControleEntradaDao extends Conexao {
 		return lista;
 	}
 	
-	public Estoque buscar(long id) {
-		Estoque es = null;
+	public ControleEntrada buscar(long id) {
+		ControleEntrada ce = null;
 		
-		String sql = "select * from Estoque where Id = ?";
+		String sql = "select * from ControleEntrada where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
@@ -106,15 +104,15 @@ public class ControleEntradaDao extends Conexao {
 				Produto p = new Produto();
 				Fornecedor f = new Fornecedor();
 				
-				es = new Estoque();
-				es.setId(rs.getLong("Id"));
-				es.setProduto(p);
+				ce = new ControleEntrada();
+				ce.setId(rs.getLong("Id"));
+				ce.setDataEntrada(rs.getDate("DataEntrada"));
+				ce.setProduto(p);
 				p.setId(rs.getLong("Id"));
-				es.setFornecedor(f);
+				ce.setFornecedor(f);
 				f.setId(rs.getLong("Id"));
-				es.setQuantidade(rs.getInt("Quantidade"));
-				es.setValorUnitario(rs.getDouble("ValorUnitario"));
-				es.setLocalizacaoEstoque(rs.getString("LocalizacaoEstoque"));
+				ce.setQuantidade(rs.getInt("Quantidade"));
+				ce.setValorUnitario(rs.getDouble("ValorUnitario"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao buscar");
@@ -122,15 +120,15 @@ public class ControleEntradaDao extends Conexao {
 		} finally {
 			fecharConexao();
 		}
-		return es;
+		return ce;
 	}
 	
-	public void excluir(Estoque es) {
-		String sql = "delete from Estoque where Id = ?";
+	public void excluir(ControleEntrada ce) {
+		String sql = "delete from ControleEntrada where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, es.getId());
+			ps.setLong(1, ce.getId());
 			
 			ps.execute();
 		} catch (SQLException e) {
