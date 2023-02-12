@@ -33,7 +33,7 @@ public class ProdutoDao extends Conexao {
 	}
 	
 	public void alterar(Produto p) {
-		String sql = "update Produto set Nome = ?, Categoria = ?, Fornecedor_Id = (select max(Id) from Fornecedor), EstoqueMinimo = ?, EstoqueMaximo = ?, Descricao = ? where CodigoBarra = ?";
+		String sql = "update Produto set Nome = ?, Categoria = ?, Fornecedor_Id = ?, EstoqueMinimo = ?, EstoqueMaximo = ?, Descricao = ? where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
@@ -44,12 +44,13 @@ public class ProdutoDao extends Conexao {
 			ps.setInt(4, p.getEstoqueMinimo());
 			ps.setInt(5, p.getEstoqueMaximo());
 			ps.setString(6, p.getDescricao());
+			ps.setLong(7, p.getId());
 			
-			ps.executeUpdate();
-		} catch (SQLException e) {
+			ps.execute();
+ 		} catch (SQLException e) {
 			System.out.println("Erro na atualização");
 			e.printStackTrace();
-		} finally {
+	 	} finally {
 			fecharConexao();
 		}
 	}
@@ -65,19 +66,17 @@ public class ProdutoDao extends Conexao {
 			
 			ResultSet rs = ps.executeQuery();
 
-			Fornecedor f;
 			Produto p;
 
 			while (rs.next()) {
-				f = new Fornecedor();
-				f.setId(rs.getLong("Id"));
-				f.setNome(rs.getString("Fornecedor"));
+				Fornecedor f = new Fornecedor();
 				
 				p = new Produto();
 				p.setId(rs.getLong("Id"));
 				p.setNome(rs.getString("Nome"));
 				p.setCategoria(rs.getString("Categoria"));
 				p.setFornecedor(f);
+				f.setId(rs.getLong("Id"));
 				p.setEstoqueMinimo(rs.getInt("EstoqueMinimo"));
 				p.setEstoqueMaximo(rs.getInt("EstoqueMaximo"));
 				p.setDescricao(rs.getString("Descricao"));
@@ -95,27 +94,26 @@ public class ProdutoDao extends Conexao {
 		return lista;
 	}
 	
-	public Produto buscar(Long Id) {
+	public Produto buscar(long id) {
 		Produto p = null;
-		Fornecedor f;
 		
 		String sql = "select * from listagemProduto where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, Id);
+			ps.setLong(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
-				f = new Fornecedor();
-				f.setNome("Fornecedor");
+				Fornecedor f = new Fornecedor();
 				
 				p = new Produto();
 				p.setId(rs.getLong("Id"));
 				p.setNome(rs.getString("Nome"));
 				p.setCategoria(rs.getString("Categoria"));
 				p.setFornecedor(f);
+				f.setId(rs.getLong("Id"));
 				p.setEstoqueMinimo(rs.getInt("EstoqueMinimo"));
 				p.setEstoqueMaximo(rs.getInt("EstoqueMaximo"));
 				p.setDescricao(rs.getString("Descricao"));
@@ -130,10 +128,10 @@ public class ProdutoDao extends Conexao {
 	}
 	
 	public void excluir(Produto p) {
-		String sql = "delete from Produto where CodigoBarra = ?";
+		String sql = "delete from Produto where Id = ?";
 		
 		try {
-			PreparedStatement ps = getConexao().prepareCall(sql);		
+			PreparedStatement ps = getConexao().prepareStatement(sql);		
 			ps.setLong(1, p.getId());
 			
 			ps.executeUpdate();
