@@ -5,33 +5,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.cj.jdbc.CallableStatement;
-
 import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
 
 public class FornecedorDao extends Conexao {
 
-	public void cadastrar(Endereco end, Fornecedor f) {
-		String call = "CALL cadastra_End (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public void cadastrar(Fornecedor f) {
+		String sql = "insert into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id) values (?, ?, ?, ?, ?, ?)";
 		
 		try {
-			CallableStatement cs = (CallableStatement) getConexao().prepareCall(call);
+			PreparedStatement ps = getConexao().prepareStatement(sql);
 				
-			cs.setString("C_Logradouro", end.getLogradouro());
-			cs.setInt("C_Numero", end.getNumero());
-			cs.setString("C_Complemento", end.getComplemento());
-			cs.setString("C_Bairro", end.getBairro());
-			cs.setString("C_Cidade", end.getCidade());
-			cs.setString("C_Estado", end.getEstado());
-			cs.setString("C_CEP", end.getCep());
-			cs.setString("C_CNPJ", f.getCnpj());
-			cs.setString("C_Nome", f.getNome());
-			cs.setString("C_Telefone", f.getTelefone());
-			cs.setString("C_Email", f.getEmail());
-			cs.setString("C_Site", f.getSite());
+			ps.setString(1, f.getCnpj());
+			ps.setString(2, f.getNome());
+			ps.setString(3, f.getTelefone());
+			ps.setString(4, f.getEmail());
+			ps.setString(5, f.getSite());
+			ps.setLong(6, f.getEndereco().getId());
 			
-			cs.execute();
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();
@@ -40,26 +32,21 @@ public class FornecedorDao extends Conexao {
 		}
 	}
 	
-	public void alterar(Endereco end, Fornecedor f) {
-		String call = "CALL altera_End (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, (select max(Endereco_Id) from Fornecedor), ?)";
+	public void alterar(Fornecedor f) {
+		String sql = "update Fornecedor set CNPJ = ?, Nome = ?, Telefone = ?, Email = ?, Site = ?, Endereco_Id = ? where Id = ?";
 		
 		try {
-			CallableStatement cs = (CallableStatement) getConexao().prepareCall(call);
-			cs.setString("C_Logradouro", end.getLogradouro());
-			cs.setInt("C_Numero", end.getNumero());
-			cs.setString("C_Complemento", end.getComplemento());
-			cs.setString("C_Bairro", end.getBairro());
-			cs.setString("C_Cidade", end.getCidade());
-			cs.setString("C_Estado", end.getEstado());
-			cs.setString("C_CEP", end.getCep());
-			cs.setString("C_CNPJ", f.getCnpj());
-			cs.setString("C_Nome", f.getNome());
-			cs.setString("C_Telefone", f.getTelefone());
-			cs.setString("C_Email", f.getEmail());
-			cs.setString("C_Site", f.getSite());
-			cs.setLong("C_Endereco_Id", end.getId());
-			cs.setLong("C_IdFornecedor", f.getId());
-			cs.executeUpdate();
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			
+			ps.setString(1, f.getCnpj());
+			ps.setString(2, f.getNome());
+			ps.setString(3, f.getTelefone());
+			ps.setString(4, f.getEmail());
+			ps.setString(5, f.getSite());
+			ps.setLong(6, f.getEndereco().getId());
+			ps.setLong(7, f.getId());
+			
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao alterar");
 			e.printStackTrace();
@@ -79,9 +66,10 @@ public class FornecedorDao extends Conexao {
 			
 			ResultSet rs = ps.executeQuery();
 			Fornecedor f;
-			Endereco end = null;
 		
 			while (rs.next()) {
+				Endereco end = new Endereco();
+				
 				f = new Fornecedor();
 				f.setId(rs.getLong("Id"));
 				f.setCnpj(rs.getString("CNPJ"));
@@ -90,16 +78,7 @@ public class FornecedorDao extends Conexao {
 				f.setEmail(rs.getString("Email"));
 				f.setSite(rs.getString("Site"));
 				f.setEndereco(end);
-
-				end = new Endereco();
 				end.setId(rs.getLong("Id"));
-				end.setLogradouro(rs.getString("Logradouro"));
-				end.setNumero(rs.getInt("Numero"));
-				end.setComplemento(rs.getString("Complemento"));
-				end.setBairro(rs.getString("Bairro"));
-				end.setCidade(rs.getString("Cidade"));
-				end.setEstado(rs.getString("Estado"));
-				end.setCep(rs.getString("CEP"));
 										
 				lista.add(f);
 			}
@@ -107,26 +86,26 @@ public class FornecedorDao extends Conexao {
 		} catch (SQLException e) {
 			System.out.println("Erro na consulta");
 			e.printStackTrace();
-
 		} finally {
 			fecharConexao();
 		}
 		return lista;
 	}
 	
-	public Fornecedor buscar(Long Id) {
+	public Fornecedor buscar(long id) {
 		Fornecedor f = null;
-		Endereco end = null;
 		
 		String sql = "select * from listagemFornecedor where Id = ?";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, Id);
+			ps.setLong(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
 			if (rs.next()) {
+				Endereco end = new Endereco();
+				
 				f = new Fornecedor();
 				f.setId(rs.getLong("Id"));
 				f.setCnpj(rs.getString("CNPJ"));
@@ -135,16 +114,7 @@ public class FornecedorDao extends Conexao {
 				f.setEmail(rs.getString("Email"));
 				f.setSite(rs.getString("Site"));
 				f.setEndereco(end);
-				
-				end = new Endereco();
 				end.setId(rs.getLong("Id"));
-				end.setLogradouro(rs.getString("Logradouro"));
-				end.setNumero(rs.getInt("Numero"));
-				end.setComplemento(rs.getString("Complemento"));
-				end.setBairro(rs.getString("Bairro"));
-				end.setCidade(rs.getString("Cidade"));
-				end.setEstado(rs.getString("Estado"));
-				end.setCep(rs.getString("CEP"));
 			}
 		} catch (SQLException e) {
 			System.out.println("Erro ao buscar");
@@ -162,7 +132,7 @@ public class FornecedorDao extends Conexao {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setLong(1, f.getId());
 			
-			ps.executeUpdate();
+			ps.execute();
 		} catch (SQLException e) {
 			System.out.println("Erro ao excluir");
 			e.printStackTrace();
@@ -170,6 +140,5 @@ public class FornecedorDao extends Conexao {
 			fecharConexao();
 		}
 	}
-
 }
 
