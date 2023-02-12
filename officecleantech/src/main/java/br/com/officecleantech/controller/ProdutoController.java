@@ -20,8 +20,8 @@ public class ProdutoController {
 		return dao.listar(nomeBusca);
 	}
 	
-	public Produto buscar(Long Id) {
-		return dao.buscar(Id);
+	public Produto buscar(long id) {
+		return dao.buscar(id);
 	}
 	
 	public void excluir(Produto p) {

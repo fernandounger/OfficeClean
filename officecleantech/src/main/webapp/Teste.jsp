@@ -12,6 +12,8 @@
 <%@ page import="br.com.officecleantech.model.dao.EstoqueDao" %>
 <%@ page import="br.com.officecleantech.model.entidade.ControleEntrada" %>
 <%@ page import="br.com.officecleantech.model.dao.ControleEntradaDao" %>
+<%@ page import="br.com.officecleantech.model.entidade.ControleSaida" %>
+<%@ page import="br.com.officecleantech.model.dao.ControleSaidaDao" %>
 
 <!DOCTYPE html>
 <html>
@@ -93,6 +95,17 @@
 		ControleEntradaDao cedao = new ControleEntradaDao();
 		//cedao.cadastrar(ce);
 		
+		ControleSaida cs = new ControleSaida();
+		Produto pcs = new Produto();
+		cs.setProduto(pcs);
+		pcs.setId(1);
+		cs.setQuantidade(2);
+		cs.setValorUnitario(5.00);
+		cs.setJustificativa("Para realização do serviço nº 01");
+		
+		ControleSaidaDao csdao = new ControleSaidaDao();
+		//csdao.cadastrar(cs);
+		
 		Endereco endAlterar = new Endereco();
 		endAlterar.setLogradouro("Rua das Camelias");
 		endAlterar.setNumero(100);
@@ -139,7 +152,29 @@
 		esAlterar.setValorUnitario(6.00);
 		esAlterar.setLocalizacaoEstoque("Arm2Prat3");
 		esAlterar.setId(2);
-		esdao.alterar(esAlterar);
+		//esdao.alterar(esAlterar);
+		
+		ControleEntrada ceAlterar = new ControleEntrada();
+		Produto pcea = new Produto();
+		Fornecedor fcea = new Fornecedor();
+		ceAlterar.setProduto(pcea);
+		pcea.setId(1);
+		ceAlterar.setFornecedor(fcea);
+		fcea.setId(1);
+		ceAlterar.setQuantidade(3);
+		ceAlterar.setValorUnitario(6.00);
+		ceAlterar.setId(1);
+		//cedao.alterar(ceAlterar);
+		
+		ControleSaida csAlterar = new ControleSaida();
+		Produto pcsa = new Produto();
+		csAlterar.setProduto(pcsa);
+		pcsa.setId(1);
+		csAlterar.setQuantidade(3);
+		csAlterar.setValorUnitario(6.00);
+		csAlterar.setJustificativa("Para realização do serviço nº 02");
+		csAlterar.setId(1);
+		//csdao.alterar(csAlterar);
 		
 		ArrayList<Endereco> endLista = edao.listar("");
 		for (Endereco a : endLista) {
@@ -170,6 +205,20 @@
 	<%
 		}
 		
+		ArrayList<ControleEntrada> ceLista = cedao.listar("");
+		for (ControleEntrada ace : ceLista) {
+	%>
+	<p><%= ace.getId() %> - <%= ace.getValorUnitario() %></p>
+	<%
+		}
+		
+		ArrayList<ControleSaida> csLista = csdao.listar("");
+		for (ControleSaida acs : csLista) {
+	%>
+	<p><%= acs.getId() %> - <%= acs.getJustificativa() %></p>
+	<%
+		}
+		
 		Endereco eb = edao.buscar(1);
 	%>
 	
@@ -188,6 +237,20 @@
 	%>
 	<p><%= esb.getLocalizacaoEstoque() %></p>
 	<%
+		ControleEntrada ceb = cedao.buscar(1);
+	%>
+	<p><%= ceb.getDataEntrada() %></p>
+	<%
+		ControleSaida csb = csdao.buscar(1);
+	%>
+	<p><%= csb.getDataSaida() %></p>
+	<%
+		//cs.setId(2);
+		//csdao.excluir(cs);
+		
+		//ce.setId(3);
+		//cedao.excluir(ce);
+	
 		//es.setId(3);
 		//esdao.excluir(es);
 	
