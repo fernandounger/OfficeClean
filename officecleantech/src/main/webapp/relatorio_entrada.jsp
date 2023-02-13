@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+	pageEncoding="UTF-8" %>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario" %>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap"
 		rel="stylesheet">
-	<title>Dashboard - OCT</title>
+	<title>Relatórios de Entrada - OCT</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -46,6 +47,12 @@
 				</a>
 			</div>
 			<ul class="list-unstyled components">
+				<li class="active">
+					<div class="icons-menu">
+						<i class="fa-solid fa-house"></i> <a href="#homeSubmenu"
+							data-toggle="collapse" aria-expanded="false">Dashboard</a>
+					</div>
+				</li>
 				<li>
 					<div class="icons-menu">
 						<i class="fa-solid fa-box-archive"></i> <a href="produtos.jsp">Produtos</a>
@@ -56,14 +63,12 @@
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-up"></i> <a
-									href="relatorio_entrada.jsp">Entrada</a>
+								<i class="fa-solid fa-arrow-up"></i> <a href="relatorio_entrada.jsp">Entrada</a>
 							</div>
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a
-									href="relatorio_saida.jsp">Saída</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="relatorio_saida.jsp">Saída</a>
 							</div>
 						</li>
 					</ul>
