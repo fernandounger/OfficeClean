@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+	pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario" %>
 <%@ page import="br.com.officecleantech.controller.ProdutoController" %>
@@ -17,7 +18,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap"
 		rel="stylesheet">
-	<title>Dashboard - OCT</title>
+	<title>Produtos - OCT</title>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -57,10 +58,15 @@
 				</a>
 			</div>
 			<ul class="list-unstyled components">
+				<li class="active">
+					<div class="icons-menu">
+						<i class="fa-solid fa-house"></i> <a href="#homeSubmenu"
+							data-toggle="collapse" aria-expanded="false">Dashboard</a>
+					</div>
+				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-box-archive"></i> <a
-							href="produtos.jsp">Produtos</a>
+						<i class="fa-solid fa-box-archive"></i> <a href="produtos.jsp">Produtos</a>
 					</div>
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse"
@@ -69,34 +75,29 @@
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-up"></i> <a
-									href="relatorio_entrada.jsp">Entrada</a>
+								<i class="fa-solid fa-arrow-up"></i> <a href="relatorio_entrada.jsp">Entrada</a>
 							</div>
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a
-									href="relatorio_saida.jsp">Saída</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="relatorio_saida.jsp">Saída</a>
 							</div>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-users"></i> <a
-							href="fornecedores.jsp">Fornecedores</a>
+						<i class="fa-solid fa-users"></i> <a href="fornecedores.jsp">Fornecedores</a>
 					</div>
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a
-							href="usuarios.jsp">Usuários</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuários</a>
 					</div>
 				</li>
 				<li id="li-logoff">
 					<div class="icons-menu logoff">
-						<i class="fa-solid fa-power-off"></i> <a
-							href="LogoffServlet">Sair</a>
+						<i class="fa-solid fa-power-off"></i> <a href="LogoffServlet">Sair</a>
 					</div>
 				</li>
 			</ul>

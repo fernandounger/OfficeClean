@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.officecleantech.model.entidade.ControleSaida;
-import br.com.officecleantech.model.entidade.Fornecedor;
 import br.com.officecleantech.model.entidade.Produto;
 
 public class ControleSaidaDao extends Conexao {
@@ -66,7 +65,6 @@ public class ControleSaidaDao extends Conexao {
 			
 			while (rs.next()) {
 				Produto p = new Produto();
-				Fornecedor f = new Fornecedor();
 				
 				cs = new ControleSaida();
 				cs.setId(rs.getLong("Id"));

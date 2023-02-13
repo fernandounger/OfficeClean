@@ -11,7 +11,7 @@ import br.com.officecleantech.model.entidade.Fornecedor;
 public class FornecedorDao extends Conexao {
 
 	public void cadastrar(Fornecedor f) {
-		String sql = "insert into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into Fornecedor (CNPJ, Nome, Telefone, Email, Site, Endereco_Id) values (?, ?, ?, ?, ?,?)";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);

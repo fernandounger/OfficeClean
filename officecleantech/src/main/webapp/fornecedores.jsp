@@ -15,7 +15,7 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600&display=swap"
 		rel="stylesheet">
-	<title>Dashboard - OCT</title>
+	<title>Fornecedores - OCT</title>
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
 		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -45,6 +45,15 @@
 		rd=request.getRequestDispatcher("login.jsp"); rd.forward(request, response); } Usuario
 		u=(Usuario) session.getAttribute("usuarioLogado"); %>
 	<!-- fim tratamento login-->
+	<!-- tratamento busca -->
+	<%// String nomeBusca=request.getParameter("busca"); if (nomeBusca==null) { nomeBusca="" ; } %>
+	<!-- fim tratamento busca -->
+	
+	
+	<% String nomeBuscar=request.getParameter("nomeBuscar"); if
+						(nomeBuscar==null) { nomeBuscar="" ; } %>
+	
+	<div class="wrapper">
 	<div class="wrapper">
 		<!-- Sidebar  -->
 		<nav id="sidebar">
@@ -53,10 +62,15 @@
 						style="height: 60px;"></a>
 			</div>
 			<ul class="list-unstyled components">
+				<li class="active">
+					<div class="icons-menu">
+						<i class="fa-solid fa-house"></i> <a href="#homeSubmenu"
+							data-toggle="collapse" aria-expanded="false">Dashboard</a>
+					</div>
+				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-box-archive"></i> <a
-							href="produtos.jsp">Produtos</a>
+						<i class="fa-solid fa-box-archive"></i> <a href="produtos.jsp">Produtos</a>
 					</div>
 				</li>
 				<li><a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
@@ -64,33 +78,29 @@
 					<ul class="collapse list-unstyled" id="pageSubmenu">
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-up"></i> <a
-									href="relatorio_entrada.jsp">Entrada</a>
+								<i class="fa-solid fa-arrow-up"></i> <a href="relatorio_entrada.jsp">Entrada</a>
 							</div>
 						</li>
 						<li>
 							<div class="icons-menu">
-								<i class="fa-solid fa-arrow-down"></i> <a
-									href="relatorio_saida.jsp">Saída</a>
+								<i class="fa-solid fa-arrow-down"></i> <a href="relatorio_saida.jsp">Saída</a>
 							</div>
 						</li>
 					</ul>
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-users"></i> <a href="#">Fornecedores</a>
+						<i class="fa-solid fa-users"></i> <a href="fornecedores.jsp">Fornecedores</a>
 					</div>
 				</li>
 				<li>
 					<div class="icons-menu">
-						<i class="fa-solid fa-user-plus"></i> <a
-							href="usuarios.jsp">Usuários</a>
+						<i class="fa-solid fa-user-plus"></i> <a href="usuarios.jsp">Usuários</a>
 					</div>
 				</li>
 				<li id="li-logoff">
 					<div class="icons-menu logoff">
-						<i class="fa-solid fa-power-off"></i> <a
-							href="LogoffServlet">Sair</a>
+						<i class="fa-solid fa-power-off"></i> <a href="LogoffServlet">Sair</a>
 					</div>
 				</li>
 			</ul>
@@ -115,8 +125,8 @@
 					style="background-color: #2678D1;" id="btnProduto">Cadastrar
 					Fornecedor</button>
 				<div class="search-container">
-					<% String nomeBuscar=request.getParameter("nomeBuscar"); if
-						(nomeBuscar==null) { nomeBuscar="" ; } %>
+					<% //String nomeBuscar=request.getParameter("nomeBuscar"); if
+						//(nomeBuscar==null) { nomeBuscar="" ; } %>
 						<form action="" method="post">
 							<input type="text" placeholder="Buscar fornecedor"
 								name="nomeBuscar" value="<%=nomeBuscar%>">
@@ -145,34 +155,34 @@
 									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
 									<input type="text" class="form-control shadow-none"
 										id="recipient-name" name="nome"
-										placeholder="Nome do fornecedor">
+										placeholder="Nome do fornecedor" required>
 									<input type="email" class="form-control shadow-none"
 										id="recipient-name" name="email"
-										placeholder="email@dominio.com">
+										placeholder="email@dominio.com" required>
 								</div>
 								<div
 									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
 									<input type="number" class="form-control shadow-none"
 										id="recipient-name" name="telefone"
-										placeholder="Telefone">
+										placeholder="Telefone" required>
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" name="cnpj" placeholder="CNPJ">
+										id="recipient-name" name="cnpj" placeholder="CNPJ" required>
 									<input type="text" class="form-control shadow-none"
-										id="recipient-name" name="site" placeholder="Site">
+										id="recipient-name" name="site" placeholder="Site" required>
 								</div>
 								<div
 									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" name="cep" placeholder="CEP">
+										id="recipient-name" name="cep" placeholder="CEP" required>
 									<input type="text" class="form-control shadow-none"
 										id="recipient-name" name="bairro"
-										placeholder="Bairro">
+										placeholder="Bairro" required>
 								</div>
 								<div
 									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<select class="form-select shadow-none"
 										aria-label="Default select example"
-										style="padding: 0.375rem 0.75rem" name="estado">
+										style="padding: 0.375rem 0.75rem" name="estado" required>
 										<option selected>Estado</option>
 										<option value="AC">AC</option>
 										<option value="AL">AL</option>
@@ -204,15 +214,15 @@
 									</select>
 									<input type="text" class="form-control shadow-none"
 										id="recipient-name" name="cidade"
-										placeholder="Cidade">
+										placeholder="Cidade" required>
 								</div>
 								<div
 									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
 									<input type="text" class="form-control shadow-none"
 										id="recipient-name" name="logradouro"
-										placeholder="Logradouro">
+										placeholder="Logradouro" required>
 									<input type="number" class="form-control shadow-none"
-										id="recipient-name" name="numeroo" placeholder="N°">
+										id="recipient-name" name="numero" placeholder="N°" required>
 								</div>
 								<div
 									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">

@@ -2,6 +2,7 @@ package br.com.officecleantech.view;
 
 import java.io.IOException;
 
+import br.com.officecleantech.controller.EnderecoController;
 import br.com.officecleantech.controller.FornecedorController;
 import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
@@ -38,7 +39,7 @@ public class FornecedorServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String logradouro = request.getParameter("logradouro");
-		String numero = request.getParameter("numeroo");
+		String numero = request.getParameter("numero");
 		String complemento = request.getParameter("complemento");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
@@ -66,7 +67,12 @@ public class FornecedorServlet extends HttpServlet {
 		end.setCidade(cidade);
 		end.setEstado(estado);
 		end.setCep(cep);
-				
+		
+		EnderecoController econtroller = new EnderecoController();
+		
+		econtroller.cadastrar(end);
+		
+		
 		Fornecedor f = new Fornecedor();
 		f.setCnpj(cnpj);
 		f.setNome(nome);
@@ -75,8 +81,11 @@ public class FornecedorServlet extends HttpServlet {
 		f.setSite(site);
 		f.setEndereco(end);
 		
-		FornecedorController controller = new FornecedorController();
-		controller.cadastrar(end, f);
+		
+		
+		FornecedorController fcontroller = new FornecedorController();
+		
+		fcontroller.cadastrar(f);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 		rd.forward(request, response);
