@@ -62,9 +62,13 @@ from Fornecedor f
 inner join Endereco end
 on f.Endereco_Id = end.Id;
 
+select f.Id as fId, f.CNPJ, f.Nome, f.Telefone, f.Email, f.Site, f.Endereco_Id, end.Id as endId, end.Logradouro, end.Numero, end.Complemento, end.Bairro, end.Cidade, end.Estado, end.CEP  from Fornecedor f inner join Endereco end on end.Id = f.Endereco_Id  order by f.Nome;
+
 /*delete f.*, end.* from Fornecedor as f, Endereco as end where f.Endereco_Id = 3 AND e.Id = 3;*/
 
 select * from listagemFornecedor order by Nome;
+
+select * from listagemFornecedor where Nome like 'Isoneide Maria Gomes Lameirão' order by Nome;
 
 /*delete from Fornecedor where Id = 2;*/
 

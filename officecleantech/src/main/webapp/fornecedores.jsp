@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="br.com.officecleantech.controller.FornecedorController" %>
+<%@ page import="br.com.officecleantech.controller.EnderecoController" %>
 <%@ page import="br.com.officecleantech.model.entidade.Fornecedor" %>
 <%@ page import="br.com.officecleantech.model.entidade.Endereco" %>
 <%@ page import="br.com.officecleantech.model.entidade.Usuario" %>
+<%@ page import="br.com.officecleantech.model.dao.EnderecoDao" %>
 <%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -46,13 +48,9 @@
 		u=(Usuario) session.getAttribute("usuarioLogado"); %>
 	<!-- fim tratamento login-->
 	<!-- tratamento busca -->
-	<%// String nomeBusca=request.getParameter("busca"); if (nomeBusca==null) { nomeBusca="" ; } %>
-	<!-- fim tratamento busca -->
-	
-	
 	<% String nomeBuscar=request.getParameter("nomeBuscar"); if
 						(nomeBuscar==null) { nomeBuscar="" ; } %>
-	
+	<!-- fim tratamento busca -->
 	<div class="wrapper">
 	<div class="wrapper">
 		<!-- Sidebar  -->
@@ -136,7 +134,7 @@
 						</form>
 				</div>
 			</header>
-			<!-- Modal de Produto -->
+			<!-- Modal de Fornecedor -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -239,23 +237,33 @@
 					</div>
 				</div>
 			</div>
-			<!-- Fim Modal de Produto -->
+			<!-- Fim Modal de Fornecedor -->
+			<!-- Lista Fornecedor -->
 			<div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar"
 				style="margin-top: 40px; border-radius: 8px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);">
 				<table class="table">
 					<thead
 						style="box-shadow: 0px 4px 4px rgb(0 0 0/ 5%); border-radius: 8px;">
 						<tr>
-							<th scope="col">Id</th>
+							<th scope="col">fId</th>
 							<th scope="col">Nome</th>
+							<th scope="col">CNPJ</th>
 							<th scope="col">Telefone</th>
 							<th scope="col">E-mail</th>
 							<th scope="col">Site</th>
+							<th scope="col">endId</th>
+							<th scope="col">Logradouro</th>
+							<th scope="col">Número</th>
+							<th scope="col">Complemento</th>
+							<th scope="col">Bairro</th>
+							<th scope="col">Cidade</th>
+							<th scope="col">Estado</th>
+							<th scope="col">CEP</th>
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<% FornecedorController controller=new FornecedorController();
+						<% FornecedorController controller = new FornecedorController();
 							ArrayList<Fornecedor> lista = controller.listar(nomeBuscar);
 							Endereco end = new Endereco();
 							for (Fornecedor f : lista) {
@@ -268,6 +276,9 @@
 									<%=f.getNome()%>
 								</td>
 								<td>
+									<%=f.getCnpj()%>
+								</td>
+								<td>
 									<%=f.getTelefone()%>
 								</td>
 								<td>
@@ -277,12 +288,36 @@
 									<%=f.getSite()%>
 								</td>
 								<td>
+									<%= f.getEndereco().getId() %>
+								</td>
+								<td>
+									<%=f.getEndereco().getLogradouro()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getNumero()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getComplemento()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getBairro()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getCidade()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getEstado()%>
+								</td>
+								<td>
+									<%=f.getEndereco().getCep()%>
+								</td>
+								<td>
 									<div class="d-flex gap-2">
 										<div class="text-primary" data-toggle="modal"
 											data-target="#exampleModalAtt">
-											<a
-												href="InicioAlterarFornecedor?id=<%=f.getId()%>  "><i
-													class="fa-solid fa-pen-to-square"></i></a>
+											<button type="button" class="btn text-white" data-toggle="modal"
+					data-target="#exampleModal1" data-whatever="@mdo"
+					style="background-color: #2678D1;" id="btnProduto">Atualizar Fornecedor</button>
 										</div>
 										<div class="text-danger">
 											<a href="ExcluirFornecedor?id=<%=f.getId()%>"
@@ -296,6 +331,111 @@
 					</tbody>
 				</table>
 			</div>
+			<!-- Fim do Lista Fornecedor -->
+			<!-- Modal Atualizar Fornecedor -->
+			<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header" style="border: 0;">
+							<h5 class="modal-title" id="exampleModalLabel"></h5>
+							<button type="button" class="close text-white"
+								data-dismiss="modal" aria-label="Close"
+								style="background-color: red; border: none; border-radius: 8px; padding: 5px 10px;">
+								<span aria-hidden="true" class="">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="" method="post" action="IniccioAlterarFornecedor">
+								<div
+									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="nome"
+										placeholder="Nome do fornecedor" >
+									<input type="email" class="form-control shadow-none"
+										id="recipient-name" name="email"
+										placeholder="email@dominio.com" >
+								</div>
+								<div
+									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" name="telefone"
+										placeholder="Telefone" >
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" name="cnpj" placeholder="CNPJ" >
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="site" placeholder="Site" >
+								</div>
+								<div
+									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" name="cep" placeholder="CEP" >
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="bairro"
+										placeholder="Bairro" required>
+								</div>
+								<div
+									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
+									<select class="form-select shadow-none"
+										aria-label="Default select example"
+										style="padding: 0.375rem 0.75rem" name="estado" >
+										<option selected>Estado</option>
+										<option value="AC">AC</option>
+										<option value="AL">AL</option>
+										<option value="AP">AP</option>
+										<option value="AM">AM</option>
+										<option value="BA">BA</option>
+										<option value="CE">CE</option>
+										<option value="DF">DF</option>
+										<option value="ES">ES</option>
+										<option value="GO">GO</option>
+										<option value="MA">MA</option>
+										<option value="MT">MT</option>
+										<option value="MS">MS</option>
+										<option value="MG">MG</option>
+										<option value="PA">PA</option>
+										<option value="PB">PB</option>
+										<option value="PR">PR</option>
+										<option value="PE">PE</option>
+										<option value="PI">PI</option>
+										<option value="RJ">RJ</option>
+										<option value="RN">RN</option>
+										<option value="RS">RS</option>
+										<option value="RO">RO</option>
+										<option value="RR">RR</option>
+										<option value="SC">SC</option>
+										<option value="SP">SP</option>
+										<option value="SE">SE</option>
+										<option value="TO">TO</option>
+									</select>
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="cidade"
+										placeholder="Cidade" >
+								</div>
+								<div
+									class="form-group d-flex gap-4 mb-2 flex-row columnInput">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="logradouro"
+										placeholder="Logradouro" >
+									<input type="number" class="form-control shadow-none"
+										id="recipient-name" name="numero" placeholder="N°" >
+								</div>
+								<div
+									class="form-group d-flex gap-3 mb-2 flex-column  columnInput">
+									<input type="text" class="form-control shadow-none"
+										id="recipient-name" name="complemento"
+										placeholder="Complemento">
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn text-white w-100"
+										style="background-color: #2678D1; letter-spacing: 7px; padding: 12px 0; font-weight: 600;">CADASTRAR</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Fim Modal Atualizar Fornecedor -->
 		</main>
 		<!-- jQuery CDN - Slim version (=without AJAX) -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

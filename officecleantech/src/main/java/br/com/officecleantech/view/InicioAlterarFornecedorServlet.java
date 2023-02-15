@@ -17,13 +17,13 @@ import br.com.officecleantech.model.entidade.Fornecedor;
  */
 
 @SuppressWarnings("unused")
-public class InicioAlterarFornecedor extends HttpServlet {
+public class InicioAlterarFornecedorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InicioAlterarFornecedor() {
+    public InicioAlterarFornecedorServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,7 +49,7 @@ public class InicioAlterarFornecedor extends HttpServlet {
 				
 				request.setAttribute("Fornecedor", f);
 				
-				RequestDispatcher rd = request.getRequestDispatcher("alterar_fornecedores.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 				rd.forward(request, response);
 	}
 

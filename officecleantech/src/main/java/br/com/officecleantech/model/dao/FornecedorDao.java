@@ -23,7 +23,7 @@ public class FornecedorDao extends Conexao {
 			ps.setString(5, f.getSite());
 			ps.setLong(6, f.getEndereco().getId());
 			
-			ps.execute();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class FornecedorDao extends Conexao {
 			ps.setLong(6, f.getEndereco().getId());
 			ps.setLong(7, f.getId());
 			
-			ps.execute();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Erro ao alterar");
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class FornecedorDao extends Conexao {
 	public ArrayList<Fornecedor> listar(String nomeBusca) {
 		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
 
-		String sql = "select * from listagemFornecedor where Nome like ? order by Nome";
+		String sql = "select f.Id as fId, f.CNPJ, f.Nome, f.Telefone, f.Email, f.Site, f.Endereco_Id, end.Id as endId, end.Logradouro, end.Numero, end.Complemento, end.Bairro, end.Cidade, end.Estado, end.CEP  from Fornecedor f inner join Endereco end on end.Id = f.Endereco_Id where f.Nome like ? order by f.Nome";
 		
 		try {	
 			PreparedStatement ps = getConexao().prepareStatement(sql);	
@@ -66,20 +66,27 @@ public class FornecedorDao extends Conexao {
 			
 			ResultSet rs = ps.executeQuery();
 			Fornecedor f;
-		
+			
 			while (rs.next()) {
-				Endereco end = new Endereco();
 				
 				f = new Fornecedor();
-				f.setId(rs.getLong("Id"));
+				f.setId(rs.getLong("fId"));
 				f.setCnpj(rs.getString("CNPJ"));
 				f.setNome(rs.getString("Nome"));
 				f.setTelefone(rs.getString("Telefone"));
 				f.setEmail(rs.getString("Email"));
 				f.setSite(rs.getString("Site"));
+				Endereco end = new Endereco();
 				f.setEndereco(end);
-				end.setId(rs.getLong("Id"));
-										
+				end.setId(rs.getLong("endId"));
+				end.setLogradouro(rs.getString("Logradouro"));
+				end.setNumero(rs.getInt("Numero"));
+				end.setComplemento(rs.getString("Complemento"));
+				end.setBairro(rs.getString("Bairro"));
+				end.setCidade(rs.getString("Cidade"));
+				end.setEstado(rs.getString("Estado"));
+				end.setCep(rs.getString("CEP"));
+				
 				lista.add(f);
 			}
 
@@ -126,13 +133,22 @@ public class FornecedorDao extends Conexao {
 	}
 	
 	public void excluir(Fornecedor f) {
-		String sql = "delete from Fornecedor where Id = ? ";
-				
+		//f = new Fornecedor();
+		
+		//var endId = "select Endereco_Id from Fornecedor where Id like %" + f.getId() + "%";
+		
+		String sql = "delete f.*, end.* from Fornecedor f inner join Endereco end on f.Endereco_Id = end.Id where f.Id = ? and end.Id = ?";
+		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, f.getId());
+			Endereco end = new Endereco();
 			
-			ps.execute();
+			ps.setLong(1, f.getId());
+			//ps.setLong(2, f.getEndereco().getId());
+			ps.setLong(1, end.getId());
+			
+			
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Erro ao excluir");
 			e.printStackTrace();

@@ -9,11 +9,11 @@ import br.com.officecleantech.model.entidade.Endereco;
 
 public class EnderecoDao extends Conexao {
 	
-	public void cadastrar (Endereco end) {
+	public Long cadastrar (Endereco end) {
 		String sql = "insert into Endereco (Logradouro, Numero, Complemento, Bairro, Cidade, Estado, CEP) values (?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
-			PreparedStatement ps = getConexao().prepareStatement(sql);
+			PreparedStatement ps = getConexao().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 		
 			ps.setString(1, end.getLogradouro());
 			ps.setInt(2, end.getNumero());
@@ -23,10 +23,16 @@ public class EnderecoDao extends Conexao {
 			ps.setString(6, end.getEstado());
 			ps.setString(7, end.getCep());
 			
-			ps.execute();
+			ps.executeUpdate();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			
+			return rs.getLong(1);
 		} catch (SQLException e) {
 			System.out.println("Erro ao cadastrar");
 			e.printStackTrace();
+			return null;
 		} finally {
 			fecharConexao();
 		}
@@ -47,7 +53,7 @@ public class EnderecoDao extends Conexao {
 			ps.setString(7, end.getCep());
 			ps.setLong(8, end.getId());
 			
-			ps.execute();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Erro na atualização");
 			e.printStackTrace();
@@ -59,7 +65,7 @@ public class EnderecoDao extends Conexao {
 	public ArrayList<Endereco> listar(String logradouroBusca) {
 		ArrayList<Endereco> lista = new ArrayList<Endereco>();
 		
-		String sql = "select * from Endereco where Logradouro like ? order by Logradouro";
+		String sql = "select * from Endereco where Logradouro";
 		
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
@@ -131,7 +137,7 @@ public class EnderecoDao extends Conexao {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setLong(1, end.getId());
 			
-			ps.execute();
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Erro ao excluir");
 			e.printStackTrace();			
