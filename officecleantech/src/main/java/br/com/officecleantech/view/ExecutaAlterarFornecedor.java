@@ -64,7 +64,7 @@ public class ExecutaAlterarFornecedor extends HttpServlet {
 			Id = Long.parseLong(id);
 			End = Long.parseLong(endereco);
 		} catch(Exception e) {
-			System.out.println("Erro na conversão");
+			System.out.println("Erro na conversï¿½o");
 			e.printStackTrace();
 		}
 		
@@ -88,7 +88,7 @@ public class ExecutaAlterarFornecedor extends HttpServlet {
 				
 		
 		FornecedorController controller = new FornecedorController();
-		controller.alterar(end, f);
+		controller.alterar(f);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("fornecedores.jsp");
 		rd.forward(request, response);

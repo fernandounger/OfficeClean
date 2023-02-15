@@ -8,8 +8,8 @@ import br.com.officecleantech.model.entidade.Endereco;
 public class EnderecoController {
 	EnderecoDao dao = new EnderecoDao();
 	
-	public void cadastrar(Endereco end) {
-		dao.cadastrar(end);
+	public Long cadastrar(Endereco end) {
+		return dao.cadastrar(end);
 	}
 	
 	public void alterar(Endereco end) {

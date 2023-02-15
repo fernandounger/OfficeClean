@@ -70,7 +70,8 @@ public class FornecedorServlet extends HttpServlet {
 		
 		EnderecoController econtroller = new EnderecoController();
 		
-		econtroller.cadastrar(end);
+		var enderecoId = econtroller.cadastrar(end);
+		end.setId(enderecoId);
 		
 		
 		Fornecedor f = new Fornecedor();
@@ -80,8 +81,6 @@ public class FornecedorServlet extends HttpServlet {
 		f.setEmail(email);
 		f.setSite(site);
 		f.setEndereco(end);
-		
-		
 		
 		FornecedorController fcontroller = new FornecedorController();
 		

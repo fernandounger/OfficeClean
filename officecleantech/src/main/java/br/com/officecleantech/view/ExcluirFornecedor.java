@@ -2,7 +2,9 @@ package br.com.officecleantech.view;
 
 import java.io.IOException;
 
+import br.com.officecleantech.controller.EnderecoController;
 import br.com.officecleantech.controller.FornecedorController;
+import br.com.officecleantech.model.entidade.Endereco;
 import br.com.officecleantech.model.entidade.Fornecedor;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -36,12 +38,21 @@ public class ExcluirFornecedor extends HttpServlet {
 		try {
 			Id = Long.parseLong(id);
 		} catch (Exception e) {
-			System.out.println("Erro na convers„o");
+			System.out.println("Erro na convers√£o");
 			e.printStackTrace();
 		}
 		
 		Fornecedor f = new Fornecedor();
+		 
 		f.setId(Id);
+		
+		var endId = "select Endereco_Id from Fornecedor where Id like %" + f.getId() + "%";
+		
+		f.setEndereco(endId);
+		
+		Endereco end = new Endereco();
+		end.getId();
+		
 		
 		FornecedorController controller = new FornecedorController();
 		controller.excluir(f);

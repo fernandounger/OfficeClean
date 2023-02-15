@@ -218,8 +218,8 @@
 	<p><%= acs.getId() %> - <%= acs.getJustificativa() %></p>
 	<%
 		}
-		
-		Endereco eb = edao.buscar(1);
+		var endId = 1;
+		Endereco eb = edao.buscar(endId);
 	%>
 	
 	<p><%= eb.getLogradouro() %></p>
